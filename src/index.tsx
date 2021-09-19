@@ -1,13 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './style.scss';
+import { App } from './App';
 
-const HelloWorld: React.FC = () => {
-  return (
-    <h1>
-d      Hello World
-    </h1>
-  );
-}
-
-ReactDOM.render(<HelloWorld />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));

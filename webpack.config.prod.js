@@ -14,7 +14,6 @@ module.exports = {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
     extensions: [".tsx", ".ts", ".js"],
   },
-  watch: true,
   devServer: {
     static: path.join(__dirname, "src"),
     compress: true,
@@ -56,7 +55,10 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "index.html"),
-      minify: { collapseWhitespace: true }
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
   ],
   performance: {
