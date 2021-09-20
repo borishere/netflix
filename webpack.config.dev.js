@@ -9,6 +9,7 @@ module.exports = {
     path: path.join(__dirname, "dev"),
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
+    assetModuleFilename: 'assets/images/[name][ext]'
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -47,8 +48,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: ["file-loader"],
+        test: /\.(jpg|jpeg|png|gif|svg)$/,
+        type: 'asset/resource',
       },
     ],
   },
