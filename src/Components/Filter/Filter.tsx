@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Igenre } from "../MoviesList/MoviesList";
+import { Igenre } from "../Body/Body";
 import './style.scss';
 
 interface Iprops {
@@ -31,7 +31,7 @@ export const Filter: FC<Iprops> = ({ genresList }) => {
           className={`filter-item ${genre.active ? 'active' : ''}`}
           onClick={() => genreClickHandler(genre.id)}
         >
-          {genre.name}
+          {genre.name.toUpperCase()}
         </li>
       ))}
     </ul>

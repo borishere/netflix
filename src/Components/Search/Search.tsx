@@ -10,9 +10,20 @@ export const SearchForm = () => {
 
   return (
     <div className='search-wrap'>
-      <div>FIND YOUR MOVIE</div>
-      <input value={val} onChange={(e) => setVal(e.target.value)} />
-      <button onClick={searchHandler}>Search</button>
+      <div className='search-title'>FIND YOUR MOVIE</div>
+      <div className='search-el'>
+        <input
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
+          placeholder='What do you want to watch?'
+        />
+        <button
+          className='search-btn'
+          onClick={searchHandler}
+        >
+          SEARCH
+        </button>
+      </div>
     </div>
   );
 };

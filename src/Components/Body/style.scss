@@ -1,0 +1,12 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  background-color: #232323;
+
+  .filters-wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

@@ -1,28 +1,21 @@
-import React from 'react';
-import { Filter } from '../Filter/Filter';
+import { FC } from "react";
+import { Imovie } from "../Body/Body";
+import { MovieCard } from "../MovieCard/MovieCard";
 import './style.scss';
 
-export interface Igenre {
-  id: number,
-  name: string,
-  active: boolean
+type Tprops = {
+  movies: Imovie[];
 }
 
-const genresList: Igenre[] = [
-  { id: 1, name: "all", active: true },
-  { id: 2, name: "documentary", active: false },
-  { id: 3, name: "comedy", active: false },
-  { id: 4, name: "horror", active: false },
-  { id: 5, name: "crime", active: false }
-];
-
-export const MoviesList: React.FC = () => {
+export const MoviesList: FC<Tprops> = ({ movies }) => {
   return (
-    <div>
-      <Filter genresList={genresList} />
-      <div className='sorting'>
-
-      </div>
-    </div>
+    <ul className='movies-list'>
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+        />
+      ))}
+    </ul>
   )
 }
