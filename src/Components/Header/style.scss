@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  background-color: rosybrown;
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

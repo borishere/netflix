@@ -1,0 +1,12 @@
+.filter-wrap {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+
+  .filter-item {
+    &.active {
+      text-decoration: underline;
+      text-decoration-color: red;
+    }
+  }
+}
