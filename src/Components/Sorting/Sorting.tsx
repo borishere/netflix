@@ -1,8 +1,9 @@
 import { FC } from "react"
+import './style.scss';
 
 export const Sorting: FC = () => (
   <div className='sorting'>
-    <span>SORT BY</span>
+    <span className='sorting-title'>SORT BY</span>
     <select>
       <option>release date</option>
       <option>popularity</option>

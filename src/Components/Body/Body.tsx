@@ -71,7 +71,7 @@ export const Body: React.FC = () => {
         <Filter genresList={genresList} />
         <Sorting />
       </div>
-      <div>39 movies found</div>
+      <div className='movies-found-label'>39 movies found</div>
       <MoviesList movies={movies} />
     </div>
   )
