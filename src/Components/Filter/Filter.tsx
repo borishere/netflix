@@ -11,11 +11,7 @@ export const Filter: FC<Iprops> = ({ genresList }) => {
 
   const genreClickHandler = (id: number): void => {
     const updatedGenres = genres.map((genre) => {
-      genre.active = false;
-
-      if (genre.id === id) {
-        genre.active = !genre.active;
-      }
+      genre.active = genre.id === id;
 
       return genre;
     });

@@ -3,11 +3,11 @@ import { Imovie } from "../Body/Body";
 import { MovieCard } from "../MovieCard/MovieCard";
 import './style.scss';
 
-type Tprops = {
+type Props = {
   movies: Imovie[];
 }
 
-export const MoviesList: FC<Tprops> = ({ movies }) => {
+export const MoviesList: FC<Props> = ({ movies }) => {
   return (
     <ul className='movies-list'>
       {movies.map((movie) => (
