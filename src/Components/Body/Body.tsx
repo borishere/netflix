@@ -1,21 +1,9 @@
 import React from 'react';
+import { Igenre, Imovie } from '../../Models/models';
 import { Filter } from '../Filter/Filter';
 import { MoviesList } from '../MoviesList/MoviesList';
 import { Sorting } from '../Sorting/Sorting';
 import './style.scss';
-
-export interface Igenre {
-  id: number,
-  name: string,
-  active: boolean
-}
-
-export interface Imovie {
-  id: number,
-  name: string,
-  description: string,
-  year: number
-}
 
 const genresList: Igenre[] = [
   { id: 1, name: "all", active: true },

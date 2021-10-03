@@ -1,12 +1,12 @@
 import React, { FC, useState } from "react";
-import { Igenre } from "../Body/Body";
+import { Igenre } from "../../Models/models";
 import './style.scss';
 
-interface Iprops {
+interface Props {
   genresList: Igenre[];
 }
 
-export const Filter: FC<Iprops> = ({ genresList }) => {
+export const Filter: FC<Props> = ({ genresList }) => {
   const [genres, setGenres] = useState(genresList);
 
   const genreClickHandler = (id: number): void => {

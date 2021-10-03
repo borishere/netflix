@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Imovie } from "../Body/Body";
+import { Imovie } from "../../Models/models";
 import { MovieCard } from "../MovieCard/MovieCard";
 import './style.scss';
 

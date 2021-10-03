@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Imovie } from '../Body/Body';
+import { Imovie } from '../../Models/models';
 import './style.scss';
 
 type Props = {
