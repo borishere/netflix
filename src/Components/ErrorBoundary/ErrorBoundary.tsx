@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from "react";
 
-export const ErrorBoundary: React.FC = ({ children }) => {
+export const ErrorBoundary: FC = ({ children }) => {
   const errorMessage = <h2>Something went wrong.</h2>;
 
   const hasError = false;

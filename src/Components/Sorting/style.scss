@@ -2,9 +2,18 @@
   .sorting-title {
     margin-right: 35px;
     font-size: 16px;
-    text-transform: uppercase;
     color: #ffffff;
     mix-blend-mode: normal;
     opacity: 0.6;
+  }
+
+  select {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    background: rgba(0, 0, 0, 0);
+    color: #fff;
+    border: 0;
+    text-transform: uppercase;
   }
 }

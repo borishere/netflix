@@ -5,9 +5,10 @@ import './style.scss';
 
 type Props = {
   movies: Imovie[];
+  onValueChange?: (val: Imovie) => void;
 }
 
-export const MoviesList: FC<Props> = ({ movies }) => {
+export const MoviesList: FC<Props> = ({ movies, onValueChange }) => {
   return (
     <ul className='movies-list'>
       {movies.map((movie) => (
