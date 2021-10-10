@@ -17,7 +17,7 @@ type Props = {
   onValueChange?: (val: Imovie) => void;
 }
 
-export const Body: React.FC<Props> = ({ movies, onValueChange }) => {
+export const Body: React.FC<Props> = ({ movies }) => {
   return (
     <div className='body'>
       <div className='filters-wrap'>

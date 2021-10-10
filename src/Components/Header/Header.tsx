@@ -10,7 +10,7 @@ interface Props {
   onValueChange?: (val: Imovie) => void;
 }
 
-export const Header: FC<Props> = ({ onValueChange }) => {
+export const Header: FC<Props> = () => {
   const context = useContext(ModalContext);
 
   return (

@@ -8,7 +8,7 @@ type Props = {
   onValueChange?: (val: Imovie) => void;
 }
 
-export const MoviesList: FC<Props> = ({ movies, onValueChange }) => {
+export const MoviesList: FC<Props> = ({ movies }) => {
   return (
     <ul className='movies-list'>
       {movies.map((movie) => (

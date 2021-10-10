@@ -11,7 +11,7 @@ type Props = {
   showDeleteMovieModal?: (val: boolean) => void;
 }
 
-export const MovieCard: FC<Props> = ({ movie, showEditMovieModal, showDeleteMovieModal }) => {
+export const MovieCard: FC<Props> = ({ movie }) => {
   const [showContextMenu, setShowContextMenu] = useState<boolean>(false);
 
   return (
