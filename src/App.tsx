@@ -3,11 +3,13 @@ import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
 import { Body } from './Components/Body/Body';
-import { Imovie } from './Models/models';
+import { Imovie, TselectedMovie } from './Models/models';
 import { DeleteMovieModal } from './Components/DeleteMovieModal/DeleteMovieModal';
 import { ModalContext } from './Context/ModalContext';
 import { EditMovieModal } from './Components/EditMovieModal/EditMovieModal';
 import { AddMovieModal } from './Components/AddMovieModal/AddMovieModal';
+import { AppContext } from './Context/AppContext';
+import { useTitle } from './Hooks/hooks';
 
 const mockMovies: Imovie[] = [
   {
@@ -77,6 +79,7 @@ export const App: React.FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
   const [showDeleteMovieModal, setShowDeleteMovieModal] = useState<boolean>(false);
   const [showEditMovieModal, setShowEditMovieModal] = useState<boolean>(false);
+  const [selectedMovie, setSelectedMovie] = useState<TselectedMovie>(null);
 
   // const onValueChange = (val: Imovie) => {
   //   if (!val.id) {
@@ -94,9 +97,12 @@ export const App: React.FC = () => {
     setMovies(mockMovies);
   }, []);
 
+  useTitle('Netfilx');
+
   return (
+    <AppContext.Provider value={{setSelectedMovie}}>
     <ModalContext.Provider value={{setShowAddMovieModal, setShowDeleteMovieModal, setShowEditMovieModal }}>
-      <Header />
+      <Header selectedMovie={selectedMovie}/>
       <ErrorBoundary>
         <Body movies={movies} />
       </ErrorBoundary>
@@ -121,5 +127,6 @@ export const App: React.FC = () => {
         // movie
       />
     </ModalContext.Provider>
+    </AppContext.Provider>
   )
 }
