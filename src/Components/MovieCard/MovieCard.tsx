@@ -6,7 +6,7 @@ import contextIcon from '../../Images/item-context.svg';
 import { AppContext } from '../../Context/AppContext';
 import './style.scss';
 
-type Props = {
+interface Props {
   movie: Imovie;
   showEditMovieModal?: (val: boolean) => void;
   showDeleteMovieModal?: (val: boolean) => void;

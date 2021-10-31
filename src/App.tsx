@@ -3,7 +3,7 @@ import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
 import { Body } from './Components/Body/Body';
-import { Imovie, TselectedMovie } from './Models/models';
+import { Imovie } from './Models/models';
 import { DeleteMovieModal } from './Components/DeleteMovieModal/DeleteMovieModal';
 import { ModalContext } from './Context/ModalContext';
 import { EditMovieModal } from './Components/EditMovieModal/EditMovieModal';
@@ -79,7 +79,7 @@ export const App: React.FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
   const [showDeleteMovieModal, setShowDeleteMovieModal] = useState<boolean>(false);
   const [showEditMovieModal, setShowEditMovieModal] = useState<boolean>(false);
-  const [selectedMovie, setSelectedMovie] = useState<TselectedMovie>(null);
+  const [selectedMovie, setSelectedMovie] = useState<Imovie | null>(null);
 
   // const onValueChange = (val: Imovie) => {
   //   if (!val.id) {

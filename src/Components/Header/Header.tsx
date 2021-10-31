@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
 import { ModalContext } from '../../Context/ModalContext';
-import { Imovie, TselectedMovie } from '../../Models/models';
+import { Imovie } from '../../Models/models';
 import { Logo } from '../Logo/Logo';
 import { MovieDetails } from '../MovieDetails/MovieDetails';
 import { SearchForm } from '../Search/Search';
@@ -8,7 +8,7 @@ import './style.scss';
 
 interface Props {
   onValueChange?: (val: Imovie) => void;
-  selectedMovie: TselectedMovie;
+  selectedMovie: Imovie | null;
 }
 
 export const Header: FC<Props> = ({ selectedMovie }) => {

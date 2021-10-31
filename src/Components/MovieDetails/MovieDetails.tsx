@@ -2,12 +2,12 @@ import { FC, useContext } from 'react';
 import { AppContext } from '../../Context/AppContext';
 // @ts-ignore
 import searchButton from '../../Images/Search-Button.svg';
-import { TselectedMovie } from '../../Models/models';
+import { Imovie } from '../../Models/models';
 import { Logo } from '../Logo/Logo';
 import './MovieDetails.scss';
 
 interface Props {
-  selectedMovie: TselectedMovie;
+  selectedMovie: Imovie;
 }
 
 export const MovieDetails: FC<Props> = ({ selectedMovie }) => {

@@ -12,7 +12,7 @@ const genresList: Igenre[] = [
   { id: 5, name: "crime", active: false }
 ];
 
-type Props = {
+interface Props {
   movies: Imovie[];
   onValueChange?: (val: Imovie) => void;
 }
