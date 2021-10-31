@@ -3,7 +3,7 @@ import { Imovie } from "../../Models/models";
 import { MovieCard } from "../MovieCard/MovieCard";
 import './style.scss';
 
-type Props = {
+interface Props {
   movies: Imovie[];
   onValueChange?: (val: Imovie) => void;
 }

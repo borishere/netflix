@@ -1,10 +1,14 @@
 .header {
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
   padding: 30px 90px;
-  background: url(../../Images/header.png);
-  background-color: #232323;
+  background-color: #232323 !important;
   mix-blend-mode: normal;
+
+  &.search-panel {
+    background: url("../../Images/header.png");
+  }
 
   .top {
     display: flex;

@@ -3,7 +3,7 @@ import { ModalContext } from '../../Context/ModalContext';
 import { Imovie } from '../../Models/models';
 import './style.scss';
 
-type Props = {
+interface Props {
   movie?: Imovie;
   setShow: (val: boolean) => void;
 }

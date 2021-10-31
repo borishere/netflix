@@ -1,11 +1,12 @@
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import { Imovie } from '../../Models/models';
 import { ContextMenu } from '../ContextMenu/ContextMenu';
 // @ts-ignore
 import contextIcon from '../../Images/item-context.svg';
+import { AppContext } from '../../Context/AppContext';
 import './style.scss';
 
-type Props = {
+interface Props {
   movie: Imovie;
   showEditMovieModal?: (val: boolean) => void;
   showDeleteMovieModal?: (val: boolean) => void;
@@ -13,9 +14,10 @@ type Props = {
 
 export const MovieCard: FC<Props> = ({ movie }) => {
   const [showContextMenu, setShowContextMenu] = useState<boolean>(false);
+  const appContext = useContext(AppContext);
 
   return (
-    <li className='movie-item'>
+    <li className='movie-item' onClick={() => appContext.setSelectedMovie(movie)}>
       {showContextMenu && (
         <ContextMenu
           setShow={setShowContextMenu}
