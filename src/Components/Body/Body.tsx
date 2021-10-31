@@ -1,4 +1,3 @@
-import React from 'react';
 import { Igenre, Imovie } from '../../Models/models';
 import { Filter } from '../Filter/Filter';
 import { MoviesList } from '../MoviesList/MoviesList';
@@ -13,46 +12,12 @@ const genresList: Igenre[] = [
   { id: 5, name: "crime", active: false }
 ];
 
-const movies: Imovie[] = [
-  {
-    id: 98575,
-    name: 'Pulp Fiction',
-    description: 'Action & Adventure',
-    year: 2004
-  },
-  {
-    id: 75878,
-    name: 'Bohemian Rhapsody',
-    description: 'Drama, Biography, Music',
-    year: 2003
-  },
-  {
-    id: 77419,
-    name: 'Kill Bill: Vol 2',
-    description: 'Oscar winning Movie',
-    year: 1994
-  },
-  {
-    id: 98878,
-    name: 'Avengers: War of Infinity',
-    description: 'Action & Adventure',
-    year: 2004
-  },
-  {
-    id: 69165,
-    name: 'Inception',
-    description: 'Action & Adventure',
-    year: 2003
-  },
-  {
-    id: 32665,
-    name: 'Reservoir dogs',
-    description: 'Oscar winning Movie',
-    year: 1994
-  },
-]
+type Props = {
+  movies: Imovie[];
+  onValueChange?: (val: Imovie) => void;
+}
 
-export const Body: React.FC = () => {
+export const Body: React.FC<Props> = ({ movies }) => {
   return (
     <div className='body'>
       <div className='filters-wrap'>
@@ -60,7 +25,7 @@ export const Body: React.FC = () => {
         <Sorting />
       </div>
       <div className='movies-found-label'>39 movies found</div>
-      <MoviesList movies={movies} />
+      <MoviesList movies={movies}/>
     </div>
   )
 }

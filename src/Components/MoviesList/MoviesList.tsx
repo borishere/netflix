@@ -5,6 +5,7 @@ import './style.scss';
 
 type Props = {
   movies: Imovie[];
+  onValueChange?: (val: Imovie) => void;
 }
 
 export const MoviesList: FC<Props> = ({ movies }) => {

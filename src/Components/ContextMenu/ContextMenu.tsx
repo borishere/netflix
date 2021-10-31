@@ -1,0 +1,21 @@
+import { FC, useContext } from 'react';
+import { ModalContext } from '../../Context/ModalContext';
+import { Imovie } from '../../Models/models';
+import './style.scss';
+
+type Props = {
+  movie?: Imovie;
+  setShow: (val: boolean) => void;
+}
+
+export const ContextMenu: FC<Props> = ({ setShow }) => {
+  const context = useContext(ModalContext);
+
+  return (
+    <div className='context-menu'>
+      <div className='context-menu-close-btn' onClick={() => setShow(false)}>x</div>
+      <div className='context-menu-item' onClick={() => context.setShowEditMovieModal(true)}>Edit</div>
+      <div className='context-menu-item' onClick={() => context.setShowDeleteMovieModal(true)}>Delete</div>
+    </div>
+  )
+}
