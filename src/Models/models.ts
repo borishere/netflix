@@ -14,16 +14,3 @@ export interface Imovie {
   genre: string;
   runtime: string;
 }
-
-export interface ModalProps {
-  isShown: boolean;
-  show: (val: boolean) => void;
-}
-
-export interface AddMovieModalProps extends ModalProps {
-  onValueChange?: (val: Imovie) => void;
-}
-
-export interface EditMovieModalProps extends AddMovieModalProps {
-  movie?: Imovie;
-}

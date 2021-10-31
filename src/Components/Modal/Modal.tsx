@@ -1,7 +1,11 @@
 import { FC } from 'react';
 import ReactDOM from 'react-dom';
-import { ModalProps } from '../../Models/models';
 import './style.scss';
+
+export interface ModalProps {
+  isShown: boolean;
+  show: (val: boolean) => void;
+}
 
 export const Modal: FC<ModalProps> = ({ isShown, show, children }) => {
   if (!isShown) {

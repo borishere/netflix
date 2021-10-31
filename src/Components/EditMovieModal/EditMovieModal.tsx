@@ -1,9 +1,13 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Imovie, AddMovieModalProps, EditMovieModalProps } from '../../Models/models';
-import { defaultMovie } from '../AddMovieModal/AddMovieModal';
+import { Imovie } from '../../Models/models';
+import { AddMovieModalProps, defaultMovie } from '../AddMovieModal/AddMovieModal';
 import { Modal } from '../Modal/Modal';
 import { ModalForm } from '../ModalForm/ModalForm';
 import './editMovieModal.scss';
+
+interface EditMovieModalProps extends AddMovieModalProps {
+  movie?: Imovie;
+}
 
 export const EditMovieModal: FC<EditMovieModalProps> = ({ ...props }) => {
   const [movie, setMovie] = useState<Imovie>(defaultMovie);

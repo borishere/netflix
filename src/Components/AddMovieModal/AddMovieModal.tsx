@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Imovie, AddMovieModalProps } from '../../Models/models';
-import { Modal } from '../Modal/Modal';
+import { Imovie } from '../../Models/models';
+import { Modal, ModalProps } from '../Modal/Modal';
 import { ModalForm } from '../ModalForm/ModalForm';
 import './addMovieModal.scss';
 
@@ -12,6 +12,10 @@ export const defaultMovie: Imovie = {
   runtime: '',
   releaseDate: '',
   url: ''
+}
+
+export interface AddMovieModalProps extends ModalProps {
+  onValueChange?: (val: Imovie) => void;
 }
 
 export const AddMovieModal: FC<AddMovieModalProps> = ({ onValueChange, ...props }) => {
