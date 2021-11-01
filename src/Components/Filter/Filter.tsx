@@ -1,5 +1,7 @@
-import { FC, useState } from "react";
-import { Igenre } from "../../Models/models";
+import { FC, useEffect, useState } from 'react';
+import { useAppDispatch } from '../../Hooks/hooks';
+import { Igenre } from '../../Models/models';
+import { setFilter } from '../../app/moviesSlice';
 import './style.scss';
 
 interface Props {
@@ -9,9 +11,11 @@ interface Props {
 export const Filter: FC<Props> = ({ genresList }) => {
   const [genres, setGenres] = useState(genresList);
 
-  const genreClickHandler = (id: number): void => {
+  const dispatch = useAppDispatch();
+
+  const genreClickHandler = (name: string): void => {
     const updatedGenres = genres.map((genre) => {
-      genre.active = genre.id === id;
+      genre.active = genre.name === name;
 
       return genre;
     });
@@ -19,13 +23,24 @@ export const Filter: FC<Props> = ({ genresList }) => {
     setGenres([...updatedGenres]);
   };
 
+  useEffect(() => {
+    dispatch(
+      setFilter(
+        genres
+          .filter((genre) => genre.active)
+          .map((genre) => genre.name)
+      )
+    );
+  }, [genres]);
+
+
   return (
     <ul className='filter-wrap'>
       {genres.map((genre) => (
         <li
-          key={genre.id}
+          key={genre.name}
           className={`filter-item ${genre.active ? 'active' : ''}`}
-          onClick={() => genreClickHandler(genre.id)}
+          onClick={() => genreClickHandler(genre.name)}
         >
           {genre.name.toUpperCase()}
         </li>

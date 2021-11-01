@@ -1,31 +1,35 @@
-import { Igenre, Imovie } from '../../Models/models';
+import { FC } from 'react';
+import { useCachedMovies } from '../../Hooks/hooks';
+import { Igenre } from '../../Models/models';
 import { Filter } from '../Filter/Filter';
 import { MoviesList } from '../MoviesList/MoviesList';
 import { Sorting } from '../Sorting/Sorting';
 import './style.scss';
 
 const genresList: Igenre[] = [
-  { id: 1, name: "all", active: true },
-  { id: 2, name: "documentary", active: false },
-  { id: 3, name: "comedy", active: false },
-  { id: 4, name: "horror", active: false },
-  { id: 5, name: "crime", active: false }
+  { name: 'all', active: true },
+  { name: 'documentary', active: false },
+  { name: 'comedy', active: false },
+  { name: 'horror', active: false },
+  { name: 'crime', active: false }
 ];
 
 interface Props {
-  movies: Imovie[];
-  onValueChange?: (val: Imovie) => void;
 }
 
-export const Body: React.FC<Props> = ({ movies }) => {
+export const Body: FC<Props> = () => {
+  const { movies } = useCachedMovies();
+
   return (
     <div className='body'>
       <div className='filters-wrap'>
         <Filter genresList={genresList} />
         <Sorting />
       </div>
-      <div className='movies-found-label'>39 movies found</div>
-      <MoviesList movies={movies}/>
+      <div className='movies-found-label'>
+        {`${movies?.length} movies found`}
+      </div>
+      <MoviesList />
     </div>
-  )
-}
+  );
+};
