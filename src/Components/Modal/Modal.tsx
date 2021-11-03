@@ -23,5 +23,5 @@ export const Modal: FC<ModalProps> = ({ isShown, show, children }) => {
         </div>
       </div>,
       document.getElementById('root') as Element
-    ))
+    ));
 };

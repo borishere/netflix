@@ -27,25 +27,25 @@ export const MovieDetails: FC<Props> = ({ selectedMovie }) => {
         <div className='movie-details-info'>
 
           <div className='title-rating-wrap'>
-            <h2 className='movie-details-title'>{selectedMovie?.name}</h2>
-            <span className='movie-details-rating'>{selectedMovie?.rating}</span>
+            <h2 className='movie-details-title'>{selectedMovie?.title}</h2>
+            <span className='movie-details-rating'>{selectedMovie?.vote_average}</span>
           </div>
 
           <div className='movie-details-genre'>
-            {selectedMovie?.genre}
+            {selectedMovie?.genres}
           </div>
 
           <div>
-            <span className='movie-details-year'>{selectedMovie?.releaseDate}</span>
+            <span className='movie-details-year'>{selectedMovie?.release_date}</span>
             <span className='movie-details-runtime'>{`${selectedMovie?.runtime}min`}</span>
           </div>
 
           <div className='movie-details-description'>
-            {selectedMovie?.description}
+            {selectedMovie?.overview}
           </div>
 
         </div>
       </div>
     </>
-  )
-}
+  );
+};

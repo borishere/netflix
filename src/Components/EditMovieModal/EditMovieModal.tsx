@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Imovie } from '../../Models/models';
+import { Imovie, ImovieBase } from '../../Models/models';
 import { AddMovieModalProps, defaultMovie } from '../AddMovieModal/AddMovieModal';
 import { Modal } from '../Modal/Modal';
 import { ModalForm } from '../ModalForm/ModalForm';
@@ -10,29 +10,29 @@ interface EditMovieModalProps extends AddMovieModalProps {
 }
 
 export const EditMovieModal: FC<EditMovieModalProps> = ({ ...props }) => {
-  const [movie, setMovie] = useState<Imovie>(defaultMovie);
+  const [movie, setMovie] = useState<ImovieBase>(defaultMovie);
 
   useEffect(() => {
     if (props.isShown) {
       setMovie(defaultMovie);
     }
-  }, [props.isShown])
+  }, [props.isShown]);
 
   const onChange = (val: ChangeEvent<HTMLInputElement>, field: keyof Imovie): void => {
     setMovie((movie) => ({
       ...movie,
       [field]: val.target.value
     }));
-  }
+  };
 
   const onReset = (): void => {
     setMovie(defaultMovie);
-  }
+  };
 
   const onSubmit = (): void => {
     props.show(false);
     // props.onValueChange(movie);
-  }
+  };
 
   return (
     <Modal {...props}>
@@ -45,5 +45,5 @@ export const EditMovieModal: FC<EditMovieModalProps> = ({ ...props }) => {
         </div>
       </>
     </Modal>
-  )
-}
+  );
+};

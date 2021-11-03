@@ -17,5 +17,5 @@ export const ContextMenu: FC<Props> = ({ setShow }) => {
       <div className='context-menu-item' onClick={() => context.setShowEditMovieModal(true)}>Edit</div>
       <div className='context-menu-item' onClick={() => context.setShowDeleteMovieModal(true)}>Delete</div>
     </div>
-  )
-}
+  );
+};
