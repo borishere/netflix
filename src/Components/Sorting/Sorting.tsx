@@ -16,7 +16,7 @@ export const Sorting: FC = () => {
 
   useEffect(() => {
     dispatch(setSortBy(value));
-  }, [value]);
+  }, [value, dispatch]);
 
   return (
     <div className='sorting'>

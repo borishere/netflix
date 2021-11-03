@@ -7,7 +7,7 @@ import { moviesApi } from '../services/movies';
 export const useTitle = (title: string = '') => {
   useEffect(() => {
     document.title = title;
-  }, []);
+  }, [title]);
 };
 
 export const useCachedMovies = () => {

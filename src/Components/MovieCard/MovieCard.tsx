@@ -3,21 +3,18 @@ import { ContextMenu } from '../ContextMenu/ContextMenu';
 // @ts-ignore
 import contextIcon from '../../Images/item-context.svg';
 import { AppContext } from '../../Context/AppContext';
+import { Imovie } from '../../Models/models';
 import './style.scss';
-import { useCachedMovies } from '../../Hooks/hooks';
 
 interface Props {
-  movieId: number;
+  movie: Imovie;
   showEditMovieModal?: (val: boolean) => void;
   showDeleteMovieModal?: (val: boolean) => void;
 }
 
-export const MovieCard: FC<Props> = ({ movieId }) => {
+export const MovieCard: FC<Props> = ({ movie }) => {
   const [showContextMenu, setShowContextMenu] = useState<boolean>(false);
   const appContext = useContext(AppContext);
-
-  const { movies } = useCachedMovies();
-  const movie = movies?.find((movie) => movie.id === movieId);
 
   return (
     <li className='movie-item' onClick={() => appContext.setSelectedMovie(movie)}>

@@ -24,14 +24,12 @@ export const Filter: FC<Props> = ({ genresList }) => {
   };
 
   useEffect(() => {
-    dispatch(
-      setFilter(
-        genres
-          .filter((genre) => genre.active)
-          .map((genre) => genre.name)
-      )
-    );
-  }, [genres]);
+    const preparedGenres = genres
+      .filter((genre) => genre.active)
+      .map((genre) => genre.name);
+
+    dispatch(setFilter(preparedGenres));
+  }, [genres, dispatch]);
 
 
   return (

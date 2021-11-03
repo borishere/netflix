@@ -8,7 +8,7 @@ import './style.scss';
 
 interface Props {
   onValueChange?: (val: Imovie) => void;
-  selectedMovie: Imovie | undefined;
+  selectedMovie?: Imovie;
 }
 
 export const Header: FC<Props> = ({ selectedMovie }) => {
