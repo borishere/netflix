@@ -41,7 +41,16 @@ export const moviesApi = createApi({
       invalidatesTags: [{ type: 'Movies', id: 'LIST' }]
     }),
 
-    deleteMovie: builder.mutation<void, string>({
+    editMovie: builder.mutation<Imovie, Imovie>({
+      query: (body) => ({
+        url: 'movies',
+        method: 'PUT',
+        body
+      }),
+      invalidatesTags: [{ type: 'Movies', id: 'LIST' }]
+    }),
+
+    deleteMovie: builder.mutation<void, number>({
       query: (id) => ({
         url: `movies/${id}`,
         method: 'DELETE'
@@ -55,5 +64,6 @@ export const {
   useGetMoviesQuery,
   useGetMovieQuery,
   useAddMovieMutation,
+  useEditMovieMutation,
   useDeleteMovieMutation
 } = moviesApi;

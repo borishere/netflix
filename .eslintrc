@@ -21,6 +21,8 @@
   "rules": {
     "indent": ["error", 2],
     "no-unused-vars": "warn",
+    "no-trailing-spaces": "error",
+    "space-in-parens":"error",
     "jsx-quotes": ["error", "prefer-single"]
   }
 }

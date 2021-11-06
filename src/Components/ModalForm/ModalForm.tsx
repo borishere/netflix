@@ -1,57 +1,94 @@
-import { ChangeEvent, FC } from 'react';
-import { Imovie, ImovieBase } from '../../Models/models';
+import { FC } from 'react';
+import { ErrorMessage, Field, Form } from 'formik';
 
-interface Props {
-  movie: ImovieBase;
-  onChange: (val: any, field: keyof Imovie) => void;
-}
-
-export const ModalForm: FC<Props> = ({ movie, onChange }) => {
+export const ModalForm: FC = () => {
   return (
-    <form className='modal-form'>
+    <Form className='modal-form'>
       <div className='modal-form__item-wrap'>
         <div className='modal-form__item'>
-          <label>title</label>
-          <input type='text' value={movie.title} onChange={(val) => onChange(val, 'title')} />
+          <label>TITLE</label>
+          <Field
+            type='text'
+            name='title'
+          />
+          <ErrorMessage name='title' />
         </div>
+
         <div className='modal-form__item'>
           <label>RELEASE DATE</label>
-          <input type='date' placeholder='Select Date' value={movie.release_date} onChange={(val) => onChange(val, 'release_date')} />
+          <Field
+            type='date'
+            name='release_date'
+            placeholder='Select Date'
+          />
+          <ErrorMessage name='release_date' />
         </div>
       </div>
 
       <div className='modal-form__item-wrap'>
         <div className='modal-form__item'>
           <label>MOVIE URL</label>
-          <input type='text' value={movie.poster_path} placeholder='https://' onChange={(val) => onChange(val, 'poster_path')} />
+          <Field
+            type='text'
+            name='poster_path'
+            placeholder='https://'
+          />
+          <ErrorMessage name='poster_path' />
         </div>
+
         <div className='modal-form__item'>
           <label>RATING</label>
-          <input type='text' value={`${movie.vote_average}`} placeholder='7.8' onChange={(val) => onChange(val, 'vote_average')} />
+          <Field
+            type='number'
+            name='vote_average'
+            placeholder='7.8'
+          />
+          <ErrorMessage name='vote_average' />
+
         </div>
       </div>
 
       <div className='modal-form__item-wrap'>
         <div className='modal-form__item'>
           <label>GENRE</label>
-
-          <select multiple value={movie.genres} onChange={(val) => onChange(val, 'genres')}>
+          <Field
+            as='select'
+            name='genres'
+            multiple
+            placeholder='Select Genre'
+          >
             <option value='Comedy'>Comedy</option>
             <option value='Drama'>Drama</option>
             <option value='Romance'>Romance</option>
-          </select>
-          {/* <input type='text' value={movie.genres} onChange={(val) => onChange(val, 'genres')} /> */}
+          </Field>
+          <ErrorMessage name='genres' />
         </div>
+
         <div className='modal-form__item'>
           <label>RUNTIME</label>
-          <input type='text' value={`${movie.runtime}`} placeholder='minutes' onChange={(val) => onChange(val, 'runtime')} />
+          <Field
+            type='number'
+            name='runtime'
+            placeholder='minutes'
+          />
+          <ErrorMessage name='runtime' />
         </div>
       </div>
 
       <div className='modal-form__item'>
         <label>OVERVIEW</label>
-        <input type='text' value={movie.overview} placeholder='movie description' onChange={(val) => onChange(val, 'overview')} />
+        <Field
+          type='text'
+          name='overview'
+          placeholder='movie description'
+        />
+        <ErrorMessage name='overview' />
       </div>
-    </form>
+
+      <div className='modal-buttons'>
+        <button className='reset-btn' type='reset'>RESET</button>
+        <button className='submit-btn' type='submit'>SUBMIT</button>
+      </div>
+    </Form>
   );
 };

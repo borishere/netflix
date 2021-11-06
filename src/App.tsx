@@ -3,14 +3,14 @@ import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
 import { Body } from './Components/Body/Body';
-import { IGetMoviesArgs, Imovie, ImovieBase, IMoviesState } from './Models/models';
+import { IGetMoviesArgs, Imovie } from './Models/models';
 import { DeleteMovieModal } from './Components/DeleteMovieModal/DeleteMovieModal';
 import { ModalContext } from './Context/ModalContext';
 import { EditMovieModal } from './Components/EditMovieModal/EditMovieModal';
 import { AddMovieModal } from './Components/AddMovieModal/AddMovieModal';
 import { AppContext } from './Context/AppContext';
 import { useAppSelector, useTitle } from './Hooks/hooks';
-import { useAddMovieMutation, useDeleteMovieMutation, useGetMoviesQuery } from './services/movies';
+import { useGetMoviesQuery } from './services/movies';
 
 export const App: FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
@@ -28,18 +28,6 @@ export const App: FC = () => {
   }
 
   const { data: movies, error, isLoading } = useGetMoviesQuery(queryParams);
-  // const [addMovie/* , { isLoading: isAdding } */] = useAddMovieMutation();
-  // const [deleteMovie/* , { isLoading: isRemoving } */] = useDeleteMovieMutation();
-
-  // const onAddMovie = (movieData: ImovieBase) => {
-  //   addMovie({
-  //     ...movieData
-  //   });
-  // };
-
-  // const onDeleteMovie = (id: string) => {
-  //   deleteMovie(id);
-  // };
 
   const renderBody = () => {
     if (isLoading) {
@@ -71,21 +59,18 @@ export const App: FC = () => {
         <AddMovieModal
           isShown={showAddMovieModal}
           show={setShowAddMovieModal}
-          // onValueChange={onAddMovie}
         />
 
         <DeleteMovieModal
           isShown={showDeleteMovieModal}
           show={setShowDeleteMovieModal}
-          // onValueChange={onDeleteMovie}
-          movie={selectedMovie}
+          movieId={selectedMovie?.id}
         />
 
         <EditMovieModal
           isShown={showEditMovieModal}
           show={setShowEditMovieModal}
-        // onValueChange={onValueChange}
-        // movie
+          movie={selectedMovie}
         />
       </ModalContext.Provider>
     </AppContext.Provider>
