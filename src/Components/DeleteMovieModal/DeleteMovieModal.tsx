@@ -23,7 +23,7 @@ export const DeleteMovieModal: FC<Props> = ({ movieId, ...props }) => {
   }
 
   return (
-    <Modal {...props}>
+    <Modal modalClass='delete-movie-modal' {...props}>
       <>
         {isLoading && <span>Deleting...</span>}
         <h2 className='modal-title'>DELETE MOVIE</h2>

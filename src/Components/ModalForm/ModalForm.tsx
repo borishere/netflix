@@ -1,13 +1,15 @@
 import { FC } from 'react';
 import { ErrorMessage, Field, Form } from 'formik';
+import './ModalForm.scss';
 
 export const ModalForm: FC = () => {
   return (
     <Form className='modal-form'>
       <div className='modal-form__item-wrap'>
-        <div className='modal-form__item'>
+        <div className='modal-form__item long'>
           <label>TITLE</label>
           <Field
+            className='modal-form__item-input'
             type='text'
             name='title'
           />
@@ -17,6 +19,7 @@ export const ModalForm: FC = () => {
         <div className='modal-form__item'>
           <label>RELEASE DATE</label>
           <Field
+            className='modal-form__item-input'
             type='date'
             name='release_date'
             placeholder='Select Date'
@@ -26,9 +29,10 @@ export const ModalForm: FC = () => {
       </div>
 
       <div className='modal-form__item-wrap'>
-        <div className='modal-form__item'>
+        <div className='modal-form__item long'>
           <label>MOVIE URL</label>
           <Field
+            className='modal-form__item-input'
             type='text'
             name='poster_path'
             placeholder='https://'
@@ -39,6 +43,7 @@ export const ModalForm: FC = () => {
         <div className='modal-form__item'>
           <label>RATING</label>
           <Field
+            className='modal-form__item-input'
             type='number'
             name='vote_average'
             placeholder='7.8'
@@ -49,9 +54,10 @@ export const ModalForm: FC = () => {
       </div>
 
       <div className='modal-form__item-wrap'>
-        <div className='modal-form__item'>
+        <div className='modal-form__item long'>
           <label>GENRE</label>
           <Field
+            className='modal-form__item-input'
             as='select'
             name='genres'
             multiple
@@ -67,6 +73,7 @@ export const ModalForm: FC = () => {
         <div className='modal-form__item'>
           <label>RUNTIME</label>
           <Field
+            className='modal-form__item-input'
             type='number'
             name='runtime'
             placeholder='minutes'
@@ -78,7 +85,9 @@ export const ModalForm: FC = () => {
       <div className='modal-form__item'>
         <label>OVERVIEW</label>
         <Field
-          type='text'
+          className='modal-form__item-input'
+          as='textarea'
+          rows='6'
           name='overview'
           placeholder='movie description'
         />

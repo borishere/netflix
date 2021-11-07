@@ -28,7 +28,7 @@ export const AddMovieModal: FC<AddMovieModalProps> = ({ ...props }) => {
   };
 
   return (
-    <Modal {...props}>
+    <Modal modalClass='add-movie-modal' {...props}>
       <>
         {isLoading && <span>Adding...</span>}
         <h2 className='modal-title'>ADD MOVIE</h2>

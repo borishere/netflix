@@ -22,7 +22,7 @@ export const Sorting: FC = () => {
     <div className='sorting'>
       <span className='sorting-title'>SORT BY</span>
 
-      <select value={value} onChange={onSort}>
+      <select className='sorting-items' value={value} onChange={onSort}>
         <option value='release_date'>release date</option>
         <option value='vote_count'>rating</option>
       </select>
