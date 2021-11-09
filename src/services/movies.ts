@@ -14,11 +14,11 @@ export const moviesApi = createApi({
 
     getMovies: builder.query<Imovie[], IGetMoviesArgs>({
       query: (args) => {
-        const { sortBy, sortOrder, filter } = args;
+        const { sortBy, sortOrder, filter, search, searchBy } = args;
 
         return {
           url: `movies`,
-          params: { sortBy, sortOrder, filter }
+          params: { sortBy, sortOrder, filter, search, searchBy }
         };
       },
       transformResponse: (response: IMoviesResponse) => response.data,

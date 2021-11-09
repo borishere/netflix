@@ -10,7 +10,7 @@ export const moviesSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
-    setSortBy: (state, action: PayloadAction<keyof Imovie>) => ({
+    setSortBy: (state, action: PayloadAction<string>) => ({
       ...state,
       sortBy: action.payload
     }),

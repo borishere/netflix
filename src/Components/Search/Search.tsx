@@ -1,11 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import './style.scss';
 
 export const SearchForm = () => {
-  const [val, setVal] = useState('');
+  const [value, setValue] = useState<string>('');
+  const navigate = useNavigate();
+
+  const { searchQuery } = useParams();
+
+  useEffect(() => {
+    if (searchQuery) {
+      setValue(searchQuery);
+    }
+  }, [searchQuery]);
 
   const searchHandler = () => {
-    // search action with 'val'
+    navigate(`search/${value}`);
   };
 
   return (
@@ -13,8 +23,8 @@ export const SearchForm = () => {
       <div className='search-title'>FIND YOUR MOVIE</div>
       <div className='search-el'>
         <input
-          value={val}
-          onChange={(e) => setVal(e.target.value)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
           placeholder='What do you want to watch?'
         />
         <button

@@ -1,7 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { Igenre } from '../../Models/models';
 import { setFilter } from '../../app/moviesSlice';
+import { useSearchParams } from 'react-router-dom';
 import './style.scss';
 
 interface Props {
@@ -11,9 +12,12 @@ interface Props {
 export const Filter: FC<Props> = ({ genresList }) => {
   const [genres, setGenres] = useState(genresList);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const genre = searchParams.get('genre');
+
   const dispatch = useAppDispatch();
 
-  const genreClickHandler = (name: string): void => {
+  const genreClickHandler = useCallback((name: string): void => {
     const updatedGenres = genres.map((genre) => {
       genre.active = genre.name === name;
 
@@ -21,7 +25,15 @@ export const Filter: FC<Props> = ({ genresList }) => {
     });
 
     setGenres([...updatedGenres]);
-  };
+
+    setSearchParams({ genre: name }, {replace: true});
+  }, []);
+
+  useEffect(() => {
+    if (genre) {
+      genreClickHandler(genre);
+    }
+  }, [genre, genreClickHandler]);
 
   useEffect(() => {
     const preparedGenres = genres

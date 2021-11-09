@@ -31,14 +31,16 @@ export interface IMoviesResponse {
 }
 
 export interface IMoviesState {
-  sortBy: keyof Imovie;
+  sortBy: string;
   filter?: string[];
 }
 
 export interface IGetMoviesArgs {
-  sortBy: keyof Imovie;
-  sortOrder: 'asc' | 'desc'
-  filter?: string[]
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc'
+  filter?: string | string[]
+  search?: string,
+  searchBy?: string
 }
 
 export const validationSchema = yup.object().shape({

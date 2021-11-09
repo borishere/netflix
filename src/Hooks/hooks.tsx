@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { useSearchParams, useParams } from 'react-router-dom';
 import type { RootState, AppDispatch } from '../app/store';
 import { IGetMoviesArgs } from '../Models/models';
 import { moviesApi } from '../services/movies';
@@ -11,15 +12,26 @@ export const useTitle = (title: string = '') => {
 };
 
 export const useCachedMovies = () => {
-  const sortBy = useAppSelector((state) => state.movies.sortBy);
-  const filter = useAppSelector((state) => state.movies.filter);
+  const { searchQuery } = useParams();
+  const [searchParams] = useSearchParams();
+  const genre = searchParams.get('genre');
+  const sortBy = searchParams.get('sortBy');
 
-  const queryParams: IGetMoviesArgs = { sortBy, sortOrder: 'asc' };
+  const queryParams: IGetMoviesArgs = {};
 
-  if (filter) {
-    queryParams['filter'] = filter;
+  if (genre) {
+    queryParams['filter'] = genre;
   }
 
+  if (sortBy) {
+    queryParams['sortBy'] = sortBy;
+    queryParams['sortOrder'] = 'asc';
+  }
+
+  if (searchQuery) {
+    queryParams['search'] = searchQuery;
+    queryParams['searchBy'] = 'title';
+  }
   const { data: movies } = moviesApi.endpoints.getMovies.useQueryState(queryParams);
 
   return { movies };

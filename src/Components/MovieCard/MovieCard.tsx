@@ -4,6 +4,7 @@ import { ContextMenu } from '../ContextMenu/ContextMenu';
 import contextIcon from '../../Images/item-context.svg';
 import { AppContext } from '../../Context/AppContext';
 import { Imovie } from '../../Models/models';
+import { useSearchParams } from 'react-router-dom';
 import './style.scss';
 
 interface Props {
@@ -15,9 +16,15 @@ interface Props {
 export const MovieCard: FC<Props> = ({ movie }) => {
   const [showContextMenu, setShowContextMenu] = useState<boolean>(false);
   const appContext = useContext(AppContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const onMovieSelect = () => {
+    appContext.setSelectedMovie(movie);
+    setSearchParams({ movie: movie.id.toString() });
+  };
 
   return (
-    <li className='movie-item' onClick={() => appContext.setSelectedMovie(movie)}>
+    <li className='movie-item' onClick={onMovieSelect}>
       <img
         className='context-btn'
         src={contextIcon}

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
@@ -11,6 +11,7 @@ import { AddMovieModal } from './Components/AddMovieModal/AddMovieModal';
 import { AppContext } from './Context/AppContext';
 import { useAppSelector, useTitle } from './Hooks/hooks';
 import { useGetMoviesQuery } from './services/movies';
+import { BrowserRouter, Routes, Route, useNavigate, useMatch, useParams, useSearchParams } from 'react-router-dom';
 
 export const App: FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
@@ -18,13 +19,33 @@ export const App: FC = () => {
   const [showEditMovieModal, setShowEditMovieModal] = useState<boolean>(false);
   const [selectedMovie, setSelectedMovie] = useState<Imovie>();
 
-  const sortBy = useAppSelector((state) => state.movies.sortBy);
-  const filter = useAppSelector((state) => state.movies.filter);
+  const navigate = useNavigate();
+  const isRoot = useMatch('/');
+  const { searchQuery } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const genre = searchParams.get('genre');
+  const sortBy = searchParams.get('sortBy');
 
-  const queryParams: IGetMoviesArgs = { sortBy, sortOrder: 'asc' };
+  useEffect(() => {
+    if (isRoot) {
+      navigate('/search', { replace: true });
+    }
+  }, [isRoot, navigate]);
 
-  if (filter) {
-    queryParams['filter'] = filter;
+  const queryParams: IGetMoviesArgs = { };
+
+  if (genre) {
+    queryParams['filter'] = genre;
+  }
+
+  if (sortBy) {
+    queryParams['sortBy'] = sortBy;
+    queryParams['sortOrder'] = 'asc';
+  }
+
+  if (searchQuery) {
+    queryParams['search'] = searchQuery;
+    queryParams['searchBy'] = 'title';
   }
 
   const { data: movies, error, isLoading } = useGetMoviesQuery(queryParams);
@@ -50,6 +71,7 @@ export const App: FC = () => {
   return (
     <AppContext.Provider value={{ setSelectedMovie }}>
       <ModalContext.Provider value={{ setShowAddMovieModal, setShowDeleteMovieModal, setShowEditMovieModal }}>
+
         <Header selectedMovie={selectedMovie} />
         <ErrorBoundary>
           {renderBody()}
