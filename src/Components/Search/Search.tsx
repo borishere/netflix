@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './style.scss';
 
@@ -18,6 +18,12 @@ export const SearchForm = () => {
     navigate(`search/${value}`);
   };
 
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      searchHandler();
+    }
+  };
+
   return (
     <div className='search-wrap'>
       <div className='search-title'>FIND YOUR MOVIE</div>
@@ -26,6 +32,7 @@ export const SearchForm = () => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder='What do you want to watch?'
+          onKeyDown={(e) => onKeyDown(e)}
         />
         <button
           className='search-btn'

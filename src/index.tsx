@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { App } from './App';
 import { store } from './app/store';
-import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
 import './index.scss';
 
 ReactDOM.render(

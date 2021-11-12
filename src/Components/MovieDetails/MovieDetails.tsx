@@ -1,5 +1,6 @@
-import { FC, useContext } from 'react';
-import { AppContext } from '../../Context/AppContext';
+import { FC } from 'react';
+import { useNavigate } from 'react-router';
+import { deleteParamFromExistsSearchParams } from '../../common/utils';
 // @ts-ignore
 import searchButton from '../../Images/Search-Button.svg';
 import { Imovie } from '../../Models/models';
@@ -11,7 +12,13 @@ interface Props {
 }
 
 export const MovieDetails: FC<Props> = ({ selectedMovie }) => {
-  const appContext = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const onSetSearchMode = () => {
+    const params = deleteParamFromExistsSearchParams('movie');
+
+    navigate({ search: params.toString() });
+  };
 
   return (
     <>
@@ -20,7 +27,7 @@ export const MovieDetails: FC<Props> = ({ selectedMovie }) => {
         <img
           className='search-icon'
           src={searchButton}
-          onClick={() => appContext.setSelectedMovie(null)}
+          onClick={onSetSearchMode}
         />
       </div>
 
@@ -36,7 +43,7 @@ export const MovieDetails: FC<Props> = ({ selectedMovie }) => {
           </div>
 
           <div className='movie-details-genre'>
-            {selectedMovie?.genres}
+            {selectedMovie?.genres?.map((genre, i) => `${genre}${i < selectedMovie.genres.length - 1 ? ', ' : ''}`)}
           </div>
 
           <div>

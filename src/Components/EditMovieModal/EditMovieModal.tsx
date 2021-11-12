@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Formik } from 'formik';
-import { Imovie, validationSchema } from '../../Models/models';
+import { Imovie, TNullableMovie, validationSchema } from '../../Models/models';
 import { useEditMovieMutation } from '../../services/movies';
 import { AddMovieModalProps } from '../AddMovieModal/AddMovieModal';
 import { Modal } from '../Modal/Modal';
@@ -8,7 +8,7 @@ import { ModalForm } from '../ModalForm/ModalForm';
 import './editMovieModal.scss';
 
 interface EditMovieModalProps extends AddMovieModalProps {
-  movie?: Imovie;
+  movie?: TNullableMovie;
 }
 
 export const EditMovieModal: FC<EditMovieModalProps> = ({ movie, ...props }) => {

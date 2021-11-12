@@ -32,6 +32,7 @@ export const useCachedMovies = () => {
     queryParams['search'] = searchQuery;
     queryParams['searchBy'] = 'title';
   }
+
   const { data: movies } = moviesApi.endpoints.getMovies.useQueryState(queryParams);
 
   return { movies };

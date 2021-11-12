@@ -1,34 +1,25 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { initialState } from '../../app/moviesSlice';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { setSortBy } from '../../app/moviesSlice';
-import { useSearchParams, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { addParamToExistsSearchParams } from '../../common/utils';
 import './style.scss';
 
 export const Sorting: FC = () => {
   const [value, setValue] = useState<string>(initialState.sortBy);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const sortBy = searchParams.get('sortBy');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // const params = new URLSearchParams();
-    // if (query) {
-    //   params.append('name', query);
-    // } else {
-    //   params.delete('name');
-    // }
-    // history.push({search: params.toString()});
-
-  }, []);
 
   const onSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setValue(value);
 
-    navigate({search: `${window.location.search}&sortBy=${value}`}, {replace: true});
-    // setSearchParams({ sortBy: value });
+    const params = addParamToExistsSearchParams('sortBy', value);
+
+    navigate({search: params.toString()});
   };
 
   useEffect(() => {
