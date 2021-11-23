@@ -10,7 +10,8 @@ module.exports = {
     path: path.join(__dirname, 'dev'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
-    assetModuleFilename: 'assets/images/[name][ext]'
+    assetModuleFilename: 'assets/images/[name][ext]',
+    publicPath: '/'
   },
   resolve: {
     modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -21,7 +22,8 @@ module.exports = {
     static: path.join(__dirname, 'src'),
     compress: true,
     port: 9000,
-    open: true
+    open: true,
+    historyApiFallback: true
   },
   optimization: {
     splitChunks: {

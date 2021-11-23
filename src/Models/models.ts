@@ -23,6 +23,8 @@ export interface Imovie extends ImovieBase {
   id: number;
 }
 
+export type TNullableMovie = Imovie | null;
+
 export interface IMoviesResponse {
   data: Imovie[];
   total: number;
@@ -31,14 +33,17 @@ export interface IMoviesResponse {
 }
 
 export interface IMoviesState {
-  sortBy: keyof Imovie;
+  sortBy: string;
   filter?: string[];
 }
 
 export interface IGetMoviesArgs {
-  sortBy: keyof Imovie;
-  sortOrder: 'asc' | 'desc'
-  filter?: string[]
+  sortBy?: string;
+  sortOrder?: 'asc' | 'desc'
+  filter?: string | string[]
+  search?: string,
+  searchBy?: string;
+  movie?: string;
 }
 
 export const validationSchema = yup.object().shape({

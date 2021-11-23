@@ -1,33 +1,66 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useNavigate, useMatch, useParams, useSearchParams } from 'react-router-dom';
 import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './Components/Footer/Footer';
 import { Header } from './Components/Header/Header';
 import { Body } from './Components/Body/Body';
-import { IGetMoviesArgs, Imovie } from './Models/models';
+import { IGetMoviesArgs, TNullableMovie } from './Models/models';
 import { DeleteMovieModal } from './Components/DeleteMovieModal/DeleteMovieModal';
 import { ModalContext } from './Context/ModalContext';
 import { EditMovieModal } from './Components/EditMovieModal/EditMovieModal';
 import { AddMovieModal } from './Components/AddMovieModal/AddMovieModal';
-import { AppContext } from './Context/AppContext';
-import { useAppSelector, useTitle } from './Hooks/hooks';
-import { useGetMoviesQuery } from './services/movies';
+import { useTitle } from './Hooks/hooks';
+import { useGetMovieQuery, useGetMoviesQuery } from './services/movies';
+import { skipToken } from '@reduxjs/toolkit/dist/query';
 
 export const App: FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
   const [showDeleteMovieModal, setShowDeleteMovieModal] = useState<boolean>(false);
   const [showEditMovieModal, setShowEditMovieModal] = useState<boolean>(false);
-  const [selectedMovie, setSelectedMovie] = useState<Imovie>();
+  const [selectedMovie, setSelectedMovie] = useState<TNullableMovie>(null);
 
-  const sortBy = useAppSelector((state) => state.movies.sortBy);
-  const filter = useAppSelector((state) => state.movies.filter);
+  const navigate = useNavigate();
+  const isRoot = useMatch('/');
+  const { searchQuery } = useParams();
+  const [searchParams] = useSearchParams();
 
-  const queryParams: IGetMoviesArgs = { sortBy, sortOrder: 'asc' };
+  const genreParam = searchParams.get('genre');
+  const sortByParam = searchParams.get('sortBy');
+  const movieParam = searchParams.get('movie');
 
-  if (filter) {
-    queryParams['filter'] = filter;
+  const queryParams: IGetMoviesArgs = {};
+
+  if (genreParam) {
+    queryParams['filter'] = genreParam;
+  }
+  if (sortByParam) {
+    queryParams['sortBy'] = sortByParam;
+    queryParams['sortOrder'] = 'asc';
+  }
+
+  if (searchQuery) {
+    queryParams['search'] = searchQuery;
+    queryParams['searchBy'] = 'title';
   }
 
   const { data: movies, error, isLoading } = useGetMoviesQuery(queryParams);
+  const { data: movie } = useGetMovieQuery(movieParam ?? skipToken);
+
+  useEffect(() => {
+    if (isRoot) {
+      navigate('/search', { replace: true });
+    }
+  }, [isRoot, navigate]);
+
+  useEffect(() => {
+    if (movieParam) {
+      if (movie) {
+        setSelectedMovie(movie);
+      }
+    } else {
+      setSelectedMovie(null);
+    }
+  }, [movieParam, movie]);
 
   const renderBody = () => {
     if (isLoading) {
@@ -48,31 +81,31 @@ export const App: FC = () => {
   useTitle('Netfilx');
 
   return (
-    <AppContext.Provider value={{ setSelectedMovie }}>
-      <ModalContext.Provider value={{ setShowAddMovieModal, setShowDeleteMovieModal, setShowEditMovieModal }}>
-        <Header selectedMovie={selectedMovie} />
-        <ErrorBoundary>
-          {renderBody()}
-        </ErrorBoundary>
-        <Footer />
+    <ModalContext.Provider value={{ setShowAddMovieModal, setShowDeleteMovieModal, setShowEditMovieModal }}>
+      <Header selectedMovie={selectedMovie} />
+      <ErrorBoundary>
+        {renderBody()}
+      </ErrorBoundary>
+      <Footer />
 
-        <AddMovieModal
-          isShown={showAddMovieModal}
-          show={setShowAddMovieModal}
-        />
+      <AddMovieModal
+        isShown={showAddMovieModal}
+        show={setShowAddMovieModal}
+      />
 
+      {selectedMovie?.id && (
         <DeleteMovieModal
           isShown={showDeleteMovieModal}
           show={setShowDeleteMovieModal}
-          movieId={selectedMovie?.id}
+          movieId={selectedMovie.id}
         />
+      )}
 
-        <EditMovieModal
-          isShown={showEditMovieModal}
-          show={setShowEditMovieModal}
-          movie={selectedMovie}
-        />
-      </ModalContext.Provider>
-    </AppContext.Provider>
+      <EditMovieModal
+        isShown={showEditMovieModal}
+        show={setShowEditMovieModal}
+        movie={selectedMovie}
+      />
+    </ModalContext.Provider>
   );
 };

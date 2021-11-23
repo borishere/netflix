@@ -1,7 +1,10 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { Igenre } from '../../Models/models';
 import { setFilter } from '../../app/moviesSlice';
+import { useSearchParams } from 'react-router-dom';
+import { addParamToExistsSearchParams, deleteParamFromExistsSearchParams } from '../../common/utils';
 import './style.scss';
 
 interface Props {
@@ -11,9 +14,13 @@ interface Props {
 export const Filter: FC<Props> = ({ genresList }) => {
   const [genres, setGenres] = useState(genresList);
 
-  const dispatch = useAppDispatch();
+  const [searchParams] = useSearchParams();
+  const genre = searchParams.get('genre');
 
-  const genreClickHandler = (name: string): void => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const genreClickHandler = useCallback((name: string): void => {
     const updatedGenres = genres.map((genre) => {
       genre.active = genre.name === name;
 
@@ -21,7 +28,23 @@ export const Filter: FC<Props> = ({ genresList }) => {
     });
 
     setGenres([...updatedGenres]);
-  };
+
+    let params: URLSearchParams;
+
+    if (name === 'all') {
+      params = deleteParamFromExistsSearchParams('genre');
+    } else {
+      params = addParamToExistsSearchParams('genre', name);
+    }
+
+    navigate({ search: params.toString() });
+  }, [navigate]);
+
+  useEffect(() => {
+    if (genre) {
+      genreClickHandler(genre);
+    }
+  }, [genre, genreClickHandler]);
 
   useEffect(() => {
     const preparedGenres = genres
@@ -30,7 +53,6 @@ export const Filter: FC<Props> = ({ genresList }) => {
 
     dispatch(setFilter(preparedGenres));
   }, [genres, dispatch]);
-
 
   return (
     <ul className='filter-wrap'>

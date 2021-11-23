@@ -4,7 +4,7 @@ import { Modal, ModalProps } from '../Modal/Modal';
 import './DeleteMovieModal.scss';
 
 interface Props extends ModalProps {
-  movieId?: number;
+  movieId: number;
 }
 
 export const DeleteMovieModal: FC<Props> = ({ movieId, ...props }) => {
