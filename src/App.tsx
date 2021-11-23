@@ -17,7 +17,7 @@ export const App: FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
   const [showDeleteMovieModal, setShowDeleteMovieModal] = useState<boolean>(false);
   const [showEditMovieModal, setShowEditMovieModal] = useState<boolean>(false);
-  const [selectedMovie, setSelectedMovie] = useState<TNullableMovie>();
+  const [selectedMovie, setSelectedMovie] = useState<TNullableMovie>(null);
 
   const navigate = useNavigate();
   const isRoot = useMatch('/');
@@ -93,11 +93,13 @@ export const App: FC = () => {
         show={setShowAddMovieModal}
       />
 
-      <DeleteMovieModal
-        isShown={showDeleteMovieModal}
-        show={setShowDeleteMovieModal}
-        movieId={selectedMovie?.id}
-      />
+      {selectedMovie?.id && (
+        <DeleteMovieModal
+          isShown={showDeleteMovieModal}
+          show={setShowDeleteMovieModal}
+          movieId={selectedMovie.id}
+        />
+      )}
 
       <EditMovieModal
         isShown={showEditMovieModal}

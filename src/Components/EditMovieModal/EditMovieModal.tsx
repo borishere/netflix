@@ -8,7 +8,7 @@ import { ModalForm } from '../ModalForm/ModalForm';
 import './editMovieModal.scss';
 
 interface EditMovieModalProps extends AddMovieModalProps {
-  movie?: TNullableMovie;
+  movie: TNullableMovie;
 }
 
 export const EditMovieModal: FC<EditMovieModalProps> = ({ movie, ...props }) => {
