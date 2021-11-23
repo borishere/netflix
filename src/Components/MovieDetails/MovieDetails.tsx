@@ -17,7 +17,11 @@ export const MovieDetails: FC<Props> = ({ selectedMovie }) => {
     <>
       <div className='top'>
         <Logo />
-        <img src={searchButton} onClick={() => appContext.setSelectedMovie(null)} />
+        <img
+          className='search-icon'
+          src={searchButton}
+          onClick={() => appContext.setSelectedMovie(null)}
+        />
       </div>
 
       <div className='movie-details'>

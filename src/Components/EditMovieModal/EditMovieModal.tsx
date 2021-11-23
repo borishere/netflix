@@ -1,6 +1,8 @@
-import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { Imovie, ImovieBase } from '../../Models/models';
-import { AddMovieModalProps, defaultMovie } from '../AddMovieModal/AddMovieModal';
+import { FC } from 'react';
+import { Formik } from 'formik';
+import { Imovie, validationSchema } from '../../Models/models';
+import { useEditMovieMutation } from '../../services/movies';
+import { AddMovieModalProps } from '../AddMovieModal/AddMovieModal';
 import { Modal } from '../Modal/Modal';
 import { ModalForm } from '../ModalForm/ModalForm';
 import './editMovieModal.scss';
@@ -9,40 +11,29 @@ interface EditMovieModalProps extends AddMovieModalProps {
   movie?: Imovie;
 }
 
-export const EditMovieModal: FC<EditMovieModalProps> = ({ ...props }) => {
-  const [movie, setMovie] = useState<ImovieBase>(defaultMovie);
+export const EditMovieModal: FC<EditMovieModalProps> = ({ movie, ...props }) => {
+  const [editMovie, { isLoading }] = useEditMovieMutation();
 
-  useEffect(() => {
-    if (props.isShown) {
-      setMovie(defaultMovie);
-    }
-  }, [props.isShown]);
-
-  const onChange = (val: ChangeEvent<HTMLInputElement>, field: keyof Imovie): void => {
-    setMovie((movie) => ({
-      ...movie,
-      [field]: val.target.value
-    }));
-  };
-
-  const onReset = (): void => {
-    setMovie(defaultMovie);
-  };
-
-  const onSubmit = (): void => {
-    props.show(false);
-    // props.onValueChange(movie);
+  const onSubmit = (values: Imovie): void => {
+    editMovie(values).then(() => {
+      props.show(false);
+    });
   };
 
   return (
-    <Modal {...props}>
+    <Modal modalClass='edit-movie-modal' {...props}>
       <>
+        {isLoading && <span>Editing...</span>}
         <h2 className='modal-title'>EDIT MOVIE</h2>
-        <ModalForm movie={movie} onChange={onChange} />
-        <div className='modal-buttons'>
-          <button className='reset-btn' onClick={onReset} >RESET</button>
-          <button className='submit-btn' onClick={onSubmit} >SUBMIT</button>
-        </div>
+        {movie && (
+          <Formik<Imovie>
+            initialValues={movie}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}
+          >
+            <ModalForm />
+          </Formik>
+        )}
       </>
     </Modal>
   );

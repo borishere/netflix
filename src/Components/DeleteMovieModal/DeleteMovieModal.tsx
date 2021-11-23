@@ -1,25 +1,31 @@
 import { FC } from 'react';
-import { Imovie } from '../../Models/models';
+import { useDeleteMovieMutation } from '../../services/movies';
 import { Modal, ModalProps } from '../Modal/Modal';
 import './DeleteMovieModal.scss';
 
 interface Props extends ModalProps {
-  movie: Imovie | undefined;
-  onValueChange?: (id: string) => void;
+  movieId?: number;
 }
 
-export const DeleteMovieModal: FC<Props> = ({ movie, ...props }) => {
-  const onSubmit = (): void => {
-    props.show(false);
+export const DeleteMovieModal: FC<Props> = ({ movieId, ...props }) => {
+  const [deleteMovie, { isLoading }] = useDeleteMovieMutation();
 
-    if (props.onValueChange && movie?.id) {
-      props.onValueChange(movie?.id.toString());
+  const onSubmit = (): void => {
+    if (movieId) {
+      deleteMovie(movieId).then(() => {
+        props.show(false);
+      });
     }
   };
 
+  if (!movieId) {
+    return null;
+  }
+
   return (
-    <Modal {...props}>
+    <Modal modalClass='delete-movie-modal' {...props}>
       <>
+        {isLoading && <span>Deleting...</span>}
         <h2 className='modal-title'>DELETE MOVIE</h2>
         <p>Are you sure you want to delete this movie?</p>
         <div className='modal-buttons'>

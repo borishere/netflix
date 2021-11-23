@@ -1,22 +1,29 @@
 import { FC } from 'react';
 import ReactDOM from 'react-dom';
+// @ts-ignore
+import closeButton from '../../Images/Close-Button.svg';
 import './style.scss';
 
 export interface ModalProps {
   isShown: boolean;
   show: (val: boolean) => void;
+  modalClass?: string;
 }
 
-export const Modal: FC<ModalProps> = ({ isShown, show, children }) => {
+export const Modal: FC<ModalProps> = ({ isShown, show, children, modalClass }) => {
   if (!isShown) {
     return null;
   }
 
   return (
     ReactDOM.createPortal(
-      <div className='modal'>
+      <div className={`modal ${modalClass? modalClass : ''}`}>
         <div className='modal-content'>
-          <div className='modal-close-btn' onClick={() => show(false)} >x</div>
+          <img
+            className='modal-close-btn'
+            src={closeButton}
+            onClick={() => show(false)}
+          />
           <div className='modal-body'>
             {children}
           </div>
