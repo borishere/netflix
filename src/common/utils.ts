@@ -13,3 +13,5 @@ export function deleteParamFromExistsSearchParams(value: string): URLSearchParam
 
   return params;
 }
+
+export const BASE_API_URL: string = 'http://localhost:4000/';

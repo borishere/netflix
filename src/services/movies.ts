@@ -1,24 +1,64 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { BaseQueryFn } from '@reduxjs/toolkit/query';
 import { IGetMoviesArgs, Imovie, ImovieBase, IMoviesResponse } from '../Models/models';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { BASE_API_URL } from '../common/utils';
+
+const axiosBaseQuery =
+  (
+    { baseUrl }: { baseUrl: string } = { baseUrl: '' }
+  ): BaseQueryFn<
+    {
+      url: string
+      method: AxiosRequestConfig['method']
+      data?: AxiosRequestConfig['data']
+      params?: AxiosRequestConfig['params']
+    },
+    unknown,
+    unknown
+  > =>
+    async ({ url, method, data, params: queryParams }) => {
+      const params = {
+        url: baseUrl + url,
+        method,
+        data,
+        params: queryParams
+      };
+
+      try {
+        const result = await axios(params);
+
+        return { data: result.data };
+      } catch (axiosError) {
+        let err = axiosError as AxiosError;
+
+        return {
+          error: { status: err.response?.status, data: err.response?.data }
+        };
+      }
+    };
+
 
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000' }),
+  baseQuery: axiosBaseQuery({ baseUrl: BASE_API_URL }),
   refetchOnReconnect: true,
   refetchOnMountOrArgChange: true,
   tagTypes: ['Movies'],
   endpoints: (builder) => ({
     getMovie: builder.query<Imovie, string>({
-      query: (id) => `movies/${id}`
+      query: (id) => ({
+        url: `movies/${id}`,
+        method: 'get'
+      })
     }),
 
     getMovies: builder.query<Imovie[], IGetMoviesArgs>({
       query: (args) => {
-        const { sortBy, sortOrder, filter, search, searchBy, movie } = args;
-
         return {
-          url: `movies`,
-          params: { sortBy, sortOrder, filter, search, searchBy, movie }
+          url: 'movies',
+          params: args,
+          method: 'GET'
         };
       },
       transformResponse: (response: IMoviesResponse) => response.data,
@@ -36,7 +76,7 @@ export const moviesApi = createApi({
       query: (body) => ({
         url: 'movies',
         method: 'POST',
-        body
+        data: body
       }),
       invalidatesTags: [{ type: 'Movies', id: 'LIST' }]
     }),
@@ -45,7 +85,7 @@ export const moviesApi = createApi({
       query: (body) => ({
         url: 'movies',
         method: 'PUT',
-        body
+        data: body
       }),
       invalidatesTags: [{ type: 'Movies', id: 'LIST' }]
     }),

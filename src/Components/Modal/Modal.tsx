@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 // @ts-ignore
 import closeButton from '../../Images/Close-Button.svg';
@@ -23,6 +23,7 @@ export const Modal: FC<ModalProps> = ({ isShown, show, children, modalClass }) =
             className='modal-close-btn'
             src={closeButton}
             onClick={() => show(false)}
+            aria-label='close'
           />
           <div className='modal-body'>
             {children}

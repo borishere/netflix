@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Imovie, IMoviesState } from '../Models/models';
+import { IMoviesState } from '../Models/models';
 import { RootState } from './store';
 
 export const initialState: IMoviesState = {

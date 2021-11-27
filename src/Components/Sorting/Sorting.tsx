@@ -37,7 +37,12 @@ export const Sorting: FC = () => {
     <div className='sorting'>
       <span className='sorting-title'>SORT BY</span>
 
-      <select className='sorting-items' value={value} onChange={onSort}>
+      <select
+        className='sorting-items'
+        value={value}
+        onChange={onSort}
+        aria-label='sorting-select'
+      >
         <option value='release_date'>release date</option>
         <option value='vote_count'>rating</option>
         <option value='title'>title</option>

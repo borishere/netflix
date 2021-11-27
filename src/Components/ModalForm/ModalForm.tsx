@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { ErrorMessage, Field, Form } from 'formik';
 import './ModalForm.scss';
 
@@ -12,8 +12,9 @@ export const ModalForm: FC = () => {
             className='modal-form__item-input'
             type='text'
             name='title'
+            aria-label='title-input'
           />
-          <ErrorMessage name='title' />
+          <ErrorMessage name='title' aria-label='titleError' component='div' />
         </div>
 
         <div className='modal-form__item'>
@@ -23,8 +24,9 @@ export const ModalForm: FC = () => {
             type='date'
             name='release_date'
             placeholder='Select Date'
+            aria-label='date-input'
           />
-          <ErrorMessage name='release_date' />
+          <ErrorMessage name='release_date' component='div' aria-label='dateError'/>
         </div>
       </div>
 
@@ -36,8 +38,9 @@ export const ModalForm: FC = () => {
             type='text'
             name='poster_path'
             placeholder='https://'
+            aria-label='url-input'
           />
-          <ErrorMessage name='poster_path' />
+          <ErrorMessage name='poster_path' component='div' aria-label='urlError'/>
         </div>
 
         <div className='modal-form__item'>
@@ -47,8 +50,9 @@ export const ModalForm: FC = () => {
             type='number'
             name='vote_average'
             placeholder='7.8'
+            aria-label='rating-input'
           />
-          <ErrorMessage name='vote_average' />
+          <ErrorMessage name='vote_average' component='div' aria-label='ratingError'/>
 
         </div>
       </div>
@@ -62,12 +66,13 @@ export const ModalForm: FC = () => {
             name='genres'
             multiple
             placeholder='Select Genre'
+            aria-label='genres-select'
           >
             <option value='Comedy'>Comedy</option>
             <option value='Drama'>Drama</option>
             <option value='Romance'>Romance</option>
           </Field>
-          <ErrorMessage name='genres' />
+          <ErrorMessage name='genres' component='div' aria-label='genreError'/>
         </div>
 
         <div className='modal-form__item'>
@@ -77,8 +82,9 @@ export const ModalForm: FC = () => {
             type='number'
             name='runtime'
             placeholder='minutes'
+            aria-label='runtime-input'
           />
-          <ErrorMessage name='runtime' />
+          <ErrorMessage name='runtime' component='div' aria-label='runtimeError'/>
         </div>
       </div>
 
@@ -90,8 +96,9 @@ export const ModalForm: FC = () => {
           rows='6'
           name='overview'
           placeholder='movie description'
+          aria-label='overview-input'
         />
-        <ErrorMessage name='overview' />
+        <ErrorMessage name='overview' component='div' aria-label='overviewError'/>
       </div>
 
       <div className='modal-buttons'>

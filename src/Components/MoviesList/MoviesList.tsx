@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useCachedMovies } from '../../Hooks/hooks';
 import { MovieCard } from '../MovieCard/MovieCard';
 import './style.scss';

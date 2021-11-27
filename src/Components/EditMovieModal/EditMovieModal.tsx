@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Formik } from 'formik';
 import { Imovie, TNullableMovie, validationSchema } from '../../Models/models';
 import { useEditMovieMutation } from '../../services/movies';
