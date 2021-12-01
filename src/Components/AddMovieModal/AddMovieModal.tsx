@@ -16,9 +16,7 @@ export const defaultMovie: ImovieBase = {
   poster_path: ''
 };
 
-export interface AddMovieModalProps extends ModalProps { }
-
-export const AddMovieModal: FC<AddMovieModalProps> = ({ ...props }) => {
+export const AddMovieModal: FC<ModalProps> = ({ ...props }) => {
   const [addMovie, {isLoading}] = useAddMovieMutation();
 
   const onSubmit = (values: ImovieBase): void => {

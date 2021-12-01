@@ -29,6 +29,7 @@ describe('EditMovieModal', () => {
         isShown={true}
         show={jest.fn()}
         movie={movie}
+        updateMovie={jest.fn()}
       />
     );
 
@@ -42,6 +43,7 @@ describe('EditMovieModal', () => {
         isShown={false}
         show={jest.fn()}
         movie={movie}
+        updateMovie={jest.fn()}
       />
     );
 
@@ -54,6 +56,7 @@ describe('EditMovieModal', () => {
         isShown={true}
         show={jest.fn()}
         movie={movie}
+        updateMovie={jest.fn()}
       />
     );
 

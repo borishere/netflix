@@ -44,7 +44,7 @@ export const App: FC = () => {
   }
 
   const { data: movies, error, isLoading } = useGetMoviesQuery(queryParams);
-  const { data: movie } = useGetMovieQuery(movieParam ?? skipToken);
+  const { data: movie, refetch: refetchMovie } = useGetMovieQuery(movieParam ?? skipToken);
 
   useEffect(() => {
     if (isRoot) {
@@ -111,6 +111,7 @@ export const App: FC = () => {
         isShown={showEditMovieModal}
         show={setShowEditMovieModal}
         movie={selectedMovie}
+        updateMovie={refetchMovie}
       />
     </ModalContext.Provider>
   );
