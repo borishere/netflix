@@ -14,10 +14,7 @@ export const genresList: Igenre[] = [
   { name: 'crime', active: false }
 ];
 
-interface Props {
-}
-
-export const Body: FC<Props> = () => {
+export const Body: FC = () => {
   const { movies } = useCachedMovies();
 
   return (
