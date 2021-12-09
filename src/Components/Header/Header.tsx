@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import { ModalContext } from '../../Context/ModalContext';
 import { Imovie, TNullableMovie } from '../../Models/models';
 import { Logo } from '../Logo/Logo';

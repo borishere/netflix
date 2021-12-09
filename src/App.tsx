@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useNavigate, useMatch, useParams, useSearchParams } from 'react-router-dom';
 import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
 import { Footer } from './Components/Footer/Footer';
@@ -44,7 +44,7 @@ export const App: FC = () => {
   }
 
   const { data: movies, error, isLoading } = useGetMoviesQuery(queryParams);
-  const { data: movie } = useGetMovieQuery(movieParam ?? skipToken);
+  const { data: movie, refetch: refetchMovie } = useGetMovieQuery(movieParam ?? skipToken);
 
   useEffect(() => {
     if (isRoot) {
@@ -80,8 +80,14 @@ export const App: FC = () => {
 
   useTitle('Netfilx');
 
+  const modalContext = {
+    setShowAddMovieModal,
+    setShowDeleteMovieModal,
+    setShowEditMovieModal
+  };
+
   return (
-    <ModalContext.Provider value={{ setShowAddMovieModal, setShowDeleteMovieModal, setShowEditMovieModal }}>
+    <ModalContext.Provider value={modalContext}>
       <Header selectedMovie={selectedMovie} />
       <ErrorBoundary>
         {renderBody()}
@@ -105,6 +111,7 @@ export const App: FC = () => {
         isShown={showEditMovieModal}
         show={setShowEditMovieModal}
         movie={selectedMovie}
+        updateMovie={refetchMovie}
       />
     </ModalContext.Provider>
   );

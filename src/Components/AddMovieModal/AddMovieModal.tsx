@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Formik } from 'formik';
 import { ImovieBase, validationSchema } from '../../Models/models';
 import { useAddMovieMutation } from '../../services/movies';
@@ -16,9 +16,7 @@ export const defaultMovie: ImovieBase = {
   poster_path: ''
 };
 
-export interface AddMovieModalProps extends ModalProps { }
-
-export const AddMovieModal: FC<AddMovieModalProps> = ({ ...props }) => {
+export const AddMovieModal: FC<ModalProps> = ({ ...props }) => {
   const [addMovie, {isLoading}] = useAddMovieMutation();
 
   const onSubmit = (values: ImovieBase): void => {

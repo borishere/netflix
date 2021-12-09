@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { deleteParamFromExistsSearchParams } from '../../common/utils';
 // @ts-ignore

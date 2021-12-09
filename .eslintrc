@@ -1,13 +1,15 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "plugin:react/recommended",
     "eslint:recommended",
     "plugin:react/jsx-runtime",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:cypress/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,7 +24,9 @@
     "indent": ["error", 2],
     "no-unused-vars": "warn",
     "no-trailing-spaces": "error",
-    "space-in-parens":"error",
-    "jsx-quotes": ["error", "prefer-single"]
+    "space-in-parens": "error",
+    "jsx-quotes": ["error", "prefer-single"],
+    "react/jsx-uses-vars": "error",
+    "react/jsx-uses-react": "error"
   }
 }

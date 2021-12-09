@@ -1,21 +1,22 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Formik } from 'formik';
 import { Imovie, TNullableMovie, validationSchema } from '../../Models/models';
 import { useEditMovieMutation } from '../../services/movies';
-import { AddMovieModalProps } from '../AddMovieModal/AddMovieModal';
-import { Modal } from '../Modal/Modal';
+import { Modal, ModalProps } from '../Modal/Modal';
 import { ModalForm } from '../ModalForm/ModalForm';
 import './editMovieModal.scss';
 
-interface EditMovieModalProps extends AddMovieModalProps {
+interface EditMovieModalProps extends ModalProps {
   movie: TNullableMovie;
+  updateMovie: () => void;
 }
 
-export const EditMovieModal: FC<EditMovieModalProps> = ({ movie, ...props }) => {
+export const EditMovieModal: FC<EditMovieModalProps> = ({ movie, updateMovie, ...props }) => {
   const [editMovie, { isLoading }] = useEditMovieMutation();
 
   const onSubmit = (values: Imovie): void => {
     editMovie(values).then(() => {
+      updateMovie();
       props.show(false);
     });
   };

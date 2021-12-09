@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useDeleteMovieMutation } from '../../services/movies';
 import { Modal, ModalProps } from '../Modal/Modal';
 import './DeleteMovieModal.scss';

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContextMenu } from '../ContextMenu/ContextMenu';
 // @ts-ignore

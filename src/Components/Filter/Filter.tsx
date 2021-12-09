@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../Hooks/hooks';
 import { Igenre } from '../../Models/models';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const Filter: FC<Props> = ({ genresList }) => {
-  const [genres, setGenres] = useState(genresList);
+  const [genres, setGenres] = useState<Igenre[]>(genresList);
 
   const [searchParams] = useSearchParams();
   const genre = searchParams.get('genre');
