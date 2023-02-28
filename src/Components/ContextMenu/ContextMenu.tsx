@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import { FC, useContext } from 'react';
 import { ModalContext } from '../../Context/ModalContext';
 import { Imovie } from '../../Models/models';
 import './style.scss';
@@ -22,13 +22,13 @@ export const ContextMenu: FC<Props> = ({ setShow }) => {
       </div>
       <div
         className='context-menu-item'
-        onClick={() => context.setShowEditMovieModal(true)}
+        onClick={() => context?.setShowEditMovieModal(true)}
       >
         Edit
       </div>
       <div
         className='context-menu-item'
-        onClick={() => context.setShowDeleteMovieModal(true)}
+        onClick={() => context?.setShowDeleteMovieModal(true)}
       >
         Delete
       </div>

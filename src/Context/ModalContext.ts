@@ -1,3 +1,9 @@
 import { createContext } from 'react';
 
-export const ModalContext = createContext<any>(null);
+export interface IModalContext {
+  setShowAddMovieModal: (show: boolean) => void,
+  setShowDeleteMovieModal: (show: boolean) => void,
+  setShowEditMovieModal: (show: boolean) => void
+}
+
+export const ModalContext = createContext<IModalContext | null>(null);

@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, customRender, waitFor } from '../../common/test-utils';
 import userEvent from '@testing-library/user-event';
-import { AddMovieModal, defaultMovie } from '../AddMovieModal/AddMovieModal';
+import { AddMovieModal, defaultMovie } from '../modals/AddMovieModal/AddMovieModal';
 import { Formik } from 'formik';
 import { ImovieBase, validationSchema } from '../../Models/models';
-import { ModalForm } from '../ModalForm/ModalForm';
+import { ModalForm } from '../modals/ModalForm/ModalForm';
 import '@testing-library/jest-dom';
 
 describe('ModalForm', () => {

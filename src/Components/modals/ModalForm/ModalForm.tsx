@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ErrorMessage, Field, Form } from 'formik';
-import './ModalForm.scss';
+import './style.scss';
 
 export const ModalForm: FC = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen, customRender, waitFor } from '../../common/test-utils';
-import { DeleteMovieModal } from '../DeleteMovieModal/DeleteMovieModal';
+import { DeleteMovieModal } from '../modals/DeleteMovieModal/DeleteMovieModal';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 

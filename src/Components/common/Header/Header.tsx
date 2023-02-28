@@ -1,9 +1,9 @@
-import React, { FC, useContext } from 'react';
-import { ModalContext } from '../../Context/ModalContext';
-import { Imovie, TNullableMovie } from '../../Models/models';
+import { FC, useContext } from 'react';
+import { ModalContext } from '../../../Context/ModalContext';
+import { Imovie, TNullableMovie } from '../../../Models/models';
 import { Logo } from '../Logo/Logo';
-import { MovieDetails } from '../MovieDetails/MovieDetails';
-import { SearchForm } from '../Search/Search';
+import { MovieDetails } from '../../MovieDetails/MovieDetails';
+import { SearchForm } from '../../Search/Search';
 import './style.scss';
 
 interface Props {
@@ -20,7 +20,7 @@ export const Header: FC<Props> = ({ selectedMovie }) => {
         <>
           <div className='top'>
             <Logo />
-            <button className='add-movie-btn' onClick={() => context.setShowAddMovieModal(true)}>+ ADD MOVIE</button>
+            <button className='add-movie-btn' onClick={() => context?.setShowAddMovieModal(true)}>+ ADD MOVIE</button>
           </div>
           <SearchForm />
         </>

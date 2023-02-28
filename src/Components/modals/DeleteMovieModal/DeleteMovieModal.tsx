@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { useDeleteMovieMutation } from '../../services/movies';
-import { Modal, ModalProps } from '../Modal/Modal';
-import './DeleteMovieModal.scss';
+import { FC } from 'react';
+import { useDeleteMovieMutation } from '../../../services/movies';
+import { Modal, ModalProps } from '../../common/Modal/Modal';
+import './style.scss';
 
 interface Props extends ModalProps {
   movieId: number;

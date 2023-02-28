@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useCachedMovies } from '../../Hooks/hooks';
 import { Igenre } from '../../Models/models';
 import { Filter } from '../Filter/Filter';

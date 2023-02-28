@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router';
 import { deleteParamFromExistsSearchParams } from '../../common/utils';
-// @ts-ignore
 import searchButton from '../../Images/Search-Button.svg';
 import { Imovie } from '../../Models/models';
-import { Logo } from '../Logo/Logo';
-import './MovieDetails.scss';
+import { Logo } from '../common/Logo/Logo';
+import './style.scss';
 
 interface Props {
   selectedMovie: Imovie;

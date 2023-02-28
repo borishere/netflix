@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen, customRender } from '../../common/test-utils';
-import { AddMovieModal } from '../AddMovieModal/AddMovieModal';
+import { AddMovieModal } from '../modals/AddMovieModal/AddMovieModal';
 import '@testing-library/jest-dom';
 
 describe('AddMovieModal', () => {

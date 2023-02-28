@@ -16,5 +16,5 @@
     "noEmit": false,
     "jsx": "react-jsx"
   },
-  "include": ["src", "jest.config.ts"],
+  "include": ["src", "custom.d.ts", "jest.config.ts"],
 }

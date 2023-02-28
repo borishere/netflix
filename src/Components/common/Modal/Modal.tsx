@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import ReactDOM from 'react-dom';
-// @ts-ignore
-import closeButton from '../../Images/Close-Button.svg';
+import closeButton from '../../../Images/Close-Button.svg';
 import './style.scss';
 
 export interface ModalProps {

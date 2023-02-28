@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { ModalContext } from '../Context/ModalContext';
 import { Router } from 'react-router-dom';
@@ -17,7 +17,7 @@ const AllTheProviders: FC = ({ children }) => {
   return (
     <Router location='/' navigator={history}>
       <Provider store={store}>
-        <ModalContext.Provider value={{}}>
+        <ModalContext.Provider value={null}>
           {children}
         </ModalContext.Provider>
       </Provider>
@@ -34,7 +34,7 @@ function renderWithStore(
         movies: moviesReducer
 
       },
-      middleware: (getDefaultMiddleware: any) =>
+      middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(moviesApi.middleware)
     }),
     ...renderOptions

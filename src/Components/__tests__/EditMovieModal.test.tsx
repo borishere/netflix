@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen, customRender, waitFor } from '../../common/test-utils';
-import { EditMovieModal } from '../EditMovieModal/EditMovieModal';
+import { EditMovieModal } from '../modals/EditMovieModal/EditMovieModal';
 import { Imovie } from '../../Models/models';
 import '@testing-library/jest-dom';
 

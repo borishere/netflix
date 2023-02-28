@@ -2,7 +2,7 @@ import React from 'react';
 import { screen, customRender, waitFor } from '../../common/test-utils';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { Modal } from '../Modal/Modal';
+import { Modal } from '../common/Modal/Modal';
 
 describe('Modal', () => {
   test('is visible', () => {

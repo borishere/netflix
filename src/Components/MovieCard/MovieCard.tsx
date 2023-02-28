@@ -1,7 +1,6 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ContextMenu } from '../ContextMenu/ContextMenu';
-// @ts-ignore
 import contextIcon from '../../Images/item-context.svg';
 import { Imovie } from '../../Models/models';
 import { addParamToExistsSearchParams } from '../../common/utils';

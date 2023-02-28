@@ -1,14 +1,14 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useNavigate, useMatch, useParams, useSearchParams } from 'react-router-dom';
-import { ErrorBoundary } from './Components/ErrorBoundary/ErrorBoundary';
-import { Footer } from './Components/Footer/Footer';
-import { Header } from './Components/Header/Header';
+import { ErrorBoundary } from './Components/common/ErrorBoundary/ErrorBoundary';
+import { Footer } from './Components/common/Footer/Footer';
+import { Header } from './Components/common/Header/Header';
 import { Body } from './Components/Body/Body';
 import { IGetMoviesArgs, TNullableMovie } from './Models/models';
-import { DeleteMovieModal } from './Components/DeleteMovieModal/DeleteMovieModal';
-import { ModalContext } from './Context/ModalContext';
-import { EditMovieModal } from './Components/EditMovieModal/EditMovieModal';
-import { AddMovieModal } from './Components/AddMovieModal/AddMovieModal';
+import { DeleteMovieModal } from './Components/modals/DeleteMovieModal/DeleteMovieModal';
+import { IModalContext, ModalContext } from './Context/ModalContext';
+import { EditMovieModal } from './Components/modals/EditMovieModal/EditMovieModal';
+import { AddMovieModal } from './Components/modals/AddMovieModal/AddMovieModal';
 import { useTitle } from './Hooks/hooks';
 import { useGetMovieQuery, useGetMoviesQuery } from './services/movies';
 import { skipToken } from '@reduxjs/toolkit/dist/query';
@@ -68,7 +68,7 @@ export const App: FC = () => {
     }
 
     if (error) {
-      return <div>Error</div>;
+      return <div>Error occured while getting movies, please try again later</div>;
     }
 
     if (!movies) {
@@ -80,7 +80,7 @@ export const App: FC = () => {
 
   useTitle('Netfilx');
 
-  const modalContext = {
+  const modalContext: IModalContext = {
     setShowAddMovieModal,
     setShowDeleteMovieModal,
     setShowEditMovieModal
@@ -89,7 +89,7 @@ export const App: FC = () => {
   return (
     <ModalContext.Provider value={modalContext}>
       <Header selectedMovie={selectedMovie} />
-      <ErrorBoundary>
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
         {renderBody()}
       </ErrorBoundary>
       <Footer />
