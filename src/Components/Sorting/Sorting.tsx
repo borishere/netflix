@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { initialState } from '../../app/moviesSlice';
 import { useAppDispatch } from '../../Hooks/hooks';
@@ -13,7 +13,7 @@ export const Sorting: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const onSort = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;
     setValue(value);
 

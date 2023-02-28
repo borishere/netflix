@@ -2,7 +2,8 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { BaseQueryFn } from '@reduxjs/toolkit/query';
 import { IGetMoviesArgs, Imovie, ImovieBase, IMoviesResponse } from '../Models/models';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
-import { BASE_API_URL } from '../common/utils';
+
+export const BASE_API_URL: string = 'http://localhost:4000/';
 
 const axiosBaseQuery =
   (

@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../Hooks/hooks';
 import { Igenre } from '../../Models/models';
 import { setFilter } from '../../app/moviesSlice';
 import { useSearchParams } from 'react-router-dom';
-import { addParamToExistsSearchParams, deleteParamFromExistsSearchParams } from '../../common/utils';
+import { addParamToExistsSearchParams, classNames, deleteParamFromExistsSearchParams } from '../../common/utils';
 import './style.scss';
 
 interface Props {
@@ -56,15 +56,22 @@ export const Filter: FC<Props> = ({ genresList }) => {
 
   return (
     <ul className='filter-wrap'>
-      {genres.map((genre) => (
-        <li
-          key={genre.name}
-          className={`filter-item ${genre.active ? 'active' : ''}`}
-          onClick={() => genreClickHandler(genre.name)}
-        >
-          {genre.name.toUpperCase()}
-        </li>
-      ))}
+      {genres.map((genre) => {
+        const classes = classNames({
+          'filter-item': true,
+          active: genre.active,
+        });
+
+        return (
+          <li
+            key={genre.name}
+            className={classes}
+            onClick={() => genreClickHandler(genre.name)}
+          >
+            {genre.name.toUpperCase()}
+          </li>
+        )
+      })}
     </ul>
   );
 };
