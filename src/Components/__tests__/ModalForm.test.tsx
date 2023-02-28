@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, customRender, waitFor } from '../../common/test-utils';
+import { render, screen, customRender, waitFor } from '../../common/test-utils/test-utils';
 import userEvent from '@testing-library/user-event';
 import { AddMovieModal, defaultMovie } from '../modals/AddMovieModal/AddMovieModal';
 import { Formik } from 'formik';

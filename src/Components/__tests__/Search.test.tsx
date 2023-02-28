@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, fireEvent, customRender } from '../../common/test-utils';
+import { screen, fireEvent, customRender } from '../../common/test-utils/test-utils';
 import { SearchForm } from '../Search/Search';
 import '@testing-library/jest-dom';
 

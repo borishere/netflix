@@ -14,4 +14,8 @@ export function deleteParamFromExistsSearchParams(value: string): URLSearchParam
   return params;
 }
 
-export const BASE_API_URL: string = 'http://localhost:4000/';
+export function classNames(classes: Record<string, boolean> = {}): string {
+  return Object.keys(classes)
+    .filter((className) => !!classes[className])
+    .join(' ');
+}

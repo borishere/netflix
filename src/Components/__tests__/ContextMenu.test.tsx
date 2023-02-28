@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, customRender, waitFor } from '../../common/test-utils';
+import { screen, customRender, waitFor } from '../../common/test-utils/test-utils';
 import { Imovie } from '../../Models/models';
 import userEvent from '@testing-library/user-event';
 import { ContextMenu } from '../ContextMenu/ContextMenu';

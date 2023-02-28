@@ -4,8 +4,8 @@ import { screen } from '@testing-library/react';
 import { store } from '../store';
 import { App } from '../../App';
 import { moviesApi } from '../../services/movies';
-import { renderWithStore } from '../../common/test-utils';
-import { server } from '../../common/server';
+import { renderWithStore } from '../../common/test-utils/test-utils';
+import { server } from '../../common/test-utils/server';
 
 beforeAll(() => server.listen());
 

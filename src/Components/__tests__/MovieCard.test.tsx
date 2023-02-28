@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, customRender } from '../../common/test-utils';
+import { screen, customRender } from '../../common/test-utils/test-utils';
 import '@testing-library/jest-dom';
 import { Imovie } from '../../Models/models';
 import { MovieCard } from '../MovieCard/MovieCard';

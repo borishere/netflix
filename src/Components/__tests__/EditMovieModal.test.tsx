@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, customRender, waitFor } from '../../common/test-utils';
+import { screen, customRender, waitFor } from '../../common/test-utils/test-utils';
 import { EditMovieModal } from '../modals/EditMovieModal/EditMovieModal';
 import { Imovie } from '../../Models/models';
 import '@testing-library/jest-dom';

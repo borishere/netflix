@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, customRender } from '../../common/test-utils';
+import { screen, customRender } from '../../common/test-utils/test-utils';
 import { Filter } from '../Filter/Filter';
 import { genresList } from '../Body/Body';
 import userEvent from '@testing-library/user-event';

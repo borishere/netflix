@@ -1,5 +1,5 @@
 import React from 'react';
-import { customRender } from '../../common/test-utils';
+import { customRender } from '../../common/test-utils/test-utils';
 import { MoviesList } from '../MoviesList/MoviesList';
 import '@testing-library/jest-dom';
 

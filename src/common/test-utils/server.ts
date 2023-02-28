@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { BASE_API_URL } from './utils';
+import { BASE_API_URL } from '../../services/movies';
 import mockData from './__mocks__/movies.json';
 
 let movies: any[] = Array.from(mockData);

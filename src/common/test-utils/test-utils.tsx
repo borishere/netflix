@@ -1,17 +1,16 @@
 import { FC, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
-import { ModalContext } from '../Context/ModalContext';
+import { ModalContext } from '../../Context/ModalContext';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { store } from '../app/store';
+import { store } from '../../app/store';
 import { createMemoryHistory } from 'history';
-import { moviesApi } from '../services/movies';
+import { moviesApi } from '../../services/movies';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
-import moviesReducer from '../app/moviesSlice';
+import moviesReducer from '../../app/moviesSlice';
 import { configureStore } from '@reduxjs/toolkit';
 
 const history = createMemoryHistory();
-
 
 const AllTheProviders: FC = ({ children }) => {
   return (

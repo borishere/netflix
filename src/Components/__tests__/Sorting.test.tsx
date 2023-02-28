@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen, customRender } from '../../common/test-utils';
+import { screen, customRender } from '../../common/test-utils/test-utils';
 import { Sorting } from '../Sorting/Sorting';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
