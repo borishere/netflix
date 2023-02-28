@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import { Formik } from 'formik';
-import { ImovieBase, validationSchema } from '../../../Models/models';
+import { ImovieBase } from '../../../Models/models';
 import { useAddMovieMutation } from '../../../services/movies';
 import { Modal, ModalProps } from '../../common/Modal/Modal';
 import { ModalForm } from '../ModalForm/ModalForm';
+import { validationSchema } from '../ModalForm/validationSchema';
 import './style.scss';
 
 export const defaultMovie: ImovieBase = {

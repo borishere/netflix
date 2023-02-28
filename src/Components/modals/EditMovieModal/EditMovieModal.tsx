@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import { Formik } from 'formik';
-import { Imovie, TNullableMovie, validationSchema } from '../../../Models/models';
+import { Imovie, TNullableMovie } from '../../../Models/models';
 import { useEditMovieMutation } from '../../../services/movies';
 import { Modal, ModalProps } from '../../common/Modal/Modal';
 import { ModalForm } from '../ModalForm/ModalForm';
+import { validationSchema } from '../ModalForm/validationSchema';
 import './style.scss';
 
 interface EditMovieModalProps extends ModalProps {

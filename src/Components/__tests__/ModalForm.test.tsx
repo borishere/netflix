@@ -3,8 +3,9 @@ import { render, screen, customRender, waitFor } from '../../common/test-utils/t
 import userEvent from '@testing-library/user-event';
 import { AddMovieModal, defaultMovie } from '../modals/AddMovieModal/AddMovieModal';
 import { Formik } from 'formik';
-import { ImovieBase, validationSchema } from '../../Models/models';
+import { ImovieBase } from '../../Models/models';
 import { ModalForm } from '../modals/ModalForm/ModalForm';
+import { validationSchema } from '../modals/ModalForm/validationSchema';
 import '@testing-library/jest-dom';
 
 describe('ModalForm', () => {
