@@ -18,7 +18,7 @@ ReactDOM.render(
           </Route>
           <Route
             path='*'
-            element={<p>404 not found</p>}
+            element={<p>Page not found</p>}
           />
         </Routes>
       </StrictMode>

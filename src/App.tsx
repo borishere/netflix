@@ -19,6 +19,8 @@ export const App: FC = () => {
   const [showEditMovieModal, setShowEditMovieModal] = useState<boolean>(false);
   const [selectedMovie, setSelectedMovie] = useState<TNullableMovie>(null);
 
+  useTitle('Netfilx');
+
   const navigate = useNavigate();
   const isRoot = useMatch('/');
   const { searchQuery } = useParams();
@@ -78,8 +80,6 @@ export const App: FC = () => {
     return <Body />;
   };
 
-  useTitle('Netfilx');
-
   const modalContext: IModalContext = {
     setShowAddMovieModal,
     setShowDeleteMovieModal,
@@ -89,6 +89,7 @@ export const App: FC = () => {
   return (
     <ModalContext.Provider value={modalContext}>
       <Header selectedMovie={selectedMovie} />
+
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
         {renderBody()}
       </ErrorBoundary>

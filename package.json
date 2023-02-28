@@ -1,7 +1,7 @@
 {
   "name": "netflix",
   "version": "1.0.0",
-  "description": "",
+  "description": "Movies app",
   "main": "index.js",
   "scripts": {
     "start:prod": "cross-env NODE_ENV=production webpack serve",
