@@ -1,24 +1,31 @@
 import { FC } from 'react';
-import { ErrorMessage, Field, Form } from 'formik';
+import { Field, Form } from 'formik';
+import { ItemWrap } from './ItemWrap/ItemWrap';
 import './style.scss';
 
 export const ModalForm: FC = () => {
   return (
     <Form className='modal-form'>
-      <div className='modal-form__item-wrap'>
-        <div className='modal-form__item long'>
-          <label>TITLE</label>
+      <div className='modal-form__item-row'>
+        <ItemWrap
+          title='TITLE'
+          name='title'
+          errorAriaLabel='titleError'
+          isLong
+        >
           <Field
             className='modal-form__item-input'
             type='text'
             name='title'
             aria-label='title-input'
           />
-          <ErrorMessage name='title' aria-label='titleError' component='div' />
-        </div>
+        </ItemWrap>
 
-        <div className='modal-form__item'>
-          <label>RELEASE DATE</label>
+        <ItemWrap
+          title='RELEASE DATE'
+          name='release_date'
+          errorAriaLabel='dateError'
+        >
           <Field
             className='modal-form__item-input'
             type='date'
@@ -26,13 +33,16 @@ export const ModalForm: FC = () => {
             placeholder='Select Date'
             aria-label='date-input'
           />
-          <ErrorMessage name='release_date' component='div' aria-label='dateError'/>
-        </div>
+        </ItemWrap>
       </div>
 
-      <div className='modal-form__item-wrap'>
-        <div className='modal-form__item long'>
-          <label>MOVIE URL</label>
+      <div className='modal-form__item-row'>
+        <ItemWrap
+          title='MOVIE URL'
+          name='poster_path'
+          errorAriaLabel='urlError'
+          isLong
+        >
           <Field
             className='modal-form__item-input'
             type='text'
@@ -40,11 +50,13 @@ export const ModalForm: FC = () => {
             placeholder='https://'
             aria-label='url-input'
           />
-          <ErrorMessage name='poster_path' component='div' aria-label='urlError'/>
-        </div>
+        </ItemWrap>
 
-        <div className='modal-form__item'>
-          <label>RATING</label>
+        <ItemWrap
+          title='RATING'
+          name='vote_average'
+          errorAriaLabel='ratingError'
+        >
           <Field
             className='modal-form__item-input'
             type='number'
@@ -52,14 +64,16 @@ export const ModalForm: FC = () => {
             placeholder='7.8'
             aria-label='rating-input'
           />
-          <ErrorMessage name='vote_average' component='div' aria-label='ratingError'/>
-
-        </div>
+        </ItemWrap>
       </div>
 
-      <div className='modal-form__item-wrap'>
-        <div className='modal-form__item long'>
-          <label>GENRE</label>
+      <div className='modal-form__item-row'>
+        <ItemWrap
+          title='GENRE'
+          name='genres'
+          errorAriaLabel='genreError'
+          isLong
+        >
           <Field
             className='modal-form__item-input'
             as='select'
@@ -72,11 +86,13 @@ export const ModalForm: FC = () => {
             <option value='Drama'>Drama</option>
             <option value='Romance'>Romance</option>
           </Field>
-          <ErrorMessage name='genres' component='div' aria-label='genreError'/>
-        </div>
+        </ItemWrap>
 
-        <div className='modal-form__item'>
-          <label>RUNTIME</label>
+        <ItemWrap
+          title='RUNTIME'
+          name='runtime'
+          errorAriaLabel='runtimeError'
+        >
           <Field
             className='modal-form__item-input'
             type='number'
@@ -84,12 +100,14 @@ export const ModalForm: FC = () => {
             placeholder='minutes'
             aria-label='runtime-input'
           />
-          <ErrorMessage name='runtime' component='div' aria-label='runtimeError'/>
-        </div>
+        </ItemWrap>
       </div>
 
-      <div className='modal-form__item'>
-        <label>OVERVIEW</label>
+      <ItemWrap
+        title='OVERVIEW'
+        name='overview'
+        errorAriaLabel='overviewError'
+      >
         <Field
           className='modal-form__item-input'
           as='textarea'
@@ -98,8 +116,7 @@ export const ModalForm: FC = () => {
           placeholder='movie description'
           aria-label='overview-input'
         />
-        <ErrorMessage name='overview' component='div' aria-label='overviewError'/>
-      </div>
+      </ItemWrap>
 
       <div className='modal-buttons'>
         <button className='reset-btn' type='reset'>RESET</button>
